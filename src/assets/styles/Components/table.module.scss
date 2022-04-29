@@ -1,0 +1,10 @@
+@import '../colors';
+
+.table {
+  width: 100%;
+  border-spacing: 0;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: $color-section;
+}
