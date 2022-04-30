@@ -1,19 +1,20 @@
 import * as classnames from 'classnames';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
+
 import styles from '../../assets/styles/Components/buttonsCDUD.module.scss';
+
+const save = <FontAwesomeIcon icon={faCheck} />;
+const edit = <FontAwesomeIcon icon={faPencil} />;
+const del = <FontAwesomeIcon icon={faTrash} />;
 
 const ButtonsCRUD = ({ isSave }) => (
   <div className={styles.wrapper}>
     {isSave && (
-      <input
-        className={classnames(styles.butt, styles.buttSave)}
-        type='button'
-      />
+      <div className={classnames(styles.butt, styles.buttSave)}> {save}</div>
     )}
-    <input className={classnames(styles.butt, styles.buttEdit)} type='button' />
-    <input
-      className={classnames(styles.butt, styles.buttDelete)}
-      type='button'
-    />
+    <div className={classnames(styles.butt, styles.buttEdit)}> {edit}</div>
+    <div className={classnames(styles.butt, styles.buttDelete)}>{del}</div>
   </div>
 );
 
