@@ -1,11 +1,10 @@
-$bg-color: yellow;
-
 $light-biege: #fff8ee;
 $light: #faf7f3;
 $light2: #e1ded9;
 $light-grey: #dddddd;
 $medium-biege: #e3e0da;
 $biege: #f9ede2;
+$dark-biege: #5f5f5f;
 $medium-grey: #c4c1bb;
 $brown: #c47344;
 $coral: #f07556;
@@ -15,7 +14,8 @@ $light-pink: #f7d5d9;
 
 $blue: #627a94;
 $dark-blue: #27374d;
-$green: #356b68;
+$green: #4ca389;
+$dark-green: #356b68;
 $blue-green: #32686f;
 $brown-green: #b38740;
 
@@ -29,7 +29,18 @@ $color-btn-second: $pink2;
 $color-btn-third: $biege;
 $color-section: $light;
 
-$color-stroke-btn: $light2;
+$color-tb-head: $medium-biege;
+$color-tb-text: $dark-biege;
+$color-tb-row: $biege;
+$color-selection: $medium-grey;
+$color-isEdit: $pink2;
+
+$color-stroke: $light2;
+$color-stroke2: $white;
+
+$color-delete: $coral;
+$color-edit: $blue;
+$color-save: $green;
 
 $color-bg: linear-gradient($light-biege 90%, rgba($light-biege, 0));
 // $color-bg: linear-gradient($light-biege, rgba($light-biege, 0));

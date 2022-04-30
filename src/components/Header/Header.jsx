@@ -1,5 +1,5 @@
-const Header = () => (
-  <header>
+const Header = ({ className }) => (
+  <header className={className}>
     <div>Header</div>{' '}
   </header>
 );

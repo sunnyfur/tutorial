@@ -1,10 +1,76 @@
 @import '../colors';
+@import '../vars';
+$padd: 8px;
 
 .table {
   width: 100%;
+  display: table;
   border-spacing: 0;
+  border: solid $color-stroke 1px;
+  border-radius: 10px;
+  line-height: 1.5rem;
+  th {
+    padding: $padd;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: $color-tb-text;
+    background-color: $color-tb-head;
+  }
+  tr {
+    padding: $padd;
+    text-align: center;
+    &:hover {
+      background: $color-selection;
+      color: $color-tb-text;
+    }
+  }
+  td {
+    padding: $padd;
+  }
+
+  @media screen and (max-width: $tablet) {
+    border: 0;
+
+    thead {
+      display: none;
+    }
+    tr {
+      margin-bottom: 10px;
+      display: block;
+      border: 1px solid $color-stroke2;
+    }
+    td {
+      display: block;
+      text-align: right;
+      font-size: 13px;
+      border-bottom: 1px dotted $color-stroke2;
+    }
+    // td.left_text {
+    //   text-align: right;
+    // }
+    td.justify_text {
+      text-align: right;
+    }
+    td:first-child {
+      text-align: right;
+    }
+    // td.right_text {
+    //   text-align: right;
+    // }
+    td:last-child {
+      border-bottom: 0;
+    }
+    td:before {
+      content: attr(data-label);
+      float: left;
+    }
+  }
 }
 
-tbody tr:nth-child(odd) {
-  background-color: $color-section;
+tbody tr:nth-child(even) {
+  background-color: $color-tb-row;
+}
+
+.isEdit {
+  background-color: $color-isEdit !important;
 }

@@ -1,0 +1,8 @@
+@import '../colors';
+@import '../vars';
+
+.input {
+  border: solid $color-stroke 1px;
+  border-radius: $border-radius-sm;
+  text-align: center;
+}

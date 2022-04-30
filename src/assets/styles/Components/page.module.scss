@@ -1,6 +1,21 @@
 @import '../colors';
+@import '../vars';
 
 .wrapper {
   min-height: 100vh;
   background: $color-bg;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
+  align-items: center;
+}
+.container {
+  width: 95%;
+  margin: auto;
+  max-width: $large;
+  min-height: 60px;
+}
+
+.footer {
+  justify-self: flex-end;
 }
