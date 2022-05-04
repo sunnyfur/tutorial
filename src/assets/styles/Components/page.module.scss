@@ -6,12 +6,12 @@
   background: $color-bg;
   display: flex;
   flex-direction: column;
-  // justify-content: space-between;
+
   align-items: center;
 }
 .container {
   width: 95%;
-  margin: auto;
+  margin: 10px auto;
   max-width: $large;
   min-height: 60px;
 }

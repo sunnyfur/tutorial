@@ -1,0 +1,40 @@
+@import '../colors';
+@import '../vars';
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  height: 300px;
+  width: 200px;
+
+  background-color: $color-card;
+  border: $color-stroke solid 1px;
+  border-radius: $border-radius-lg;
+}
+
+.wordContainer {
+  display: flex;
+  flex-direction: column;
+  //   justify-content: space-around;
+  align-items: center;
+}
+
+.word {
+  text-transform: capitalize;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.transcription {
+  color: $color-tb-text;
+}
+
+.russian {
+  text-transform: capitalize;
+  font-size: larger;
+  font-weight: bold;
+  color: $color-btn-main;
+}

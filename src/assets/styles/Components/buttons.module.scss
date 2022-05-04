@@ -1,0 +1,15 @@
+@import '../colors';
+@import '../vars';
+
+.btnComm {
+  background-color: $color-btn-main;
+  border: $color-stroke solid 1px;
+  border-radius: $border-radius-lg;
+  padding: 10px 15px;
+  color: $color-stroke2;
+  font-weight: bold;
+  &:hover {
+    background: $color-btn-third;
+    color: $color-tb-text;
+  }
+}

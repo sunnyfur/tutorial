@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styles from '../../assets/styles/Components/table.module.scss';
 import ButtonsCRUD from '../ButtonCRUD/ButtonsCrud';
 import TableData from './TableData';
@@ -9,8 +10,12 @@ const header = {
   tags: 'Tags',
 };
 
-const TableRow = ({ word, isEdit, isHeader = false }) =>
-  isHeader ? (
+const TableRow = ({ word, isHeader = false }) => {
+  const [isEdit, isEditChange] = useState(false);
+  const editHandle = () => {
+    isEditChange(!isEdit);
+  };
+  return isHeader ? (
     <tr className={styles.wrapper}>
       <th>{header.english}</th>
       <th>{header.transcription}</th>
@@ -19,7 +24,7 @@ const TableRow = ({ word, isEdit, isHeader = false }) =>
       <th> </th>
     </tr>
   ) : (
-    <tr className={isEdit && styles.isEdit}>
+    <tr className={isEdit ? styles.isEdit : undefined}>
       <TableData
         textHeader={header.english}
         text={word.english}
@@ -38,8 +43,10 @@ const TableRow = ({ word, isEdit, isHeader = false }) =>
       <TableData textHeader={header.tags} text={word.tags} isEdit={isEdit} />
 
       <td>
-        <ButtonsCRUD isSave={isEdit} />
+        <ButtonsCRUD isSave={isEdit} onClick={editHandle} />
       </td>
     </tr>
   );
+};
+
 export default TableRow;

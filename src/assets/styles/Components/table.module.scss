@@ -7,7 +7,7 @@ $padd: 8px;
   display: table;
   border-spacing: 0;
   border: solid $color-stroke 1px;
-  border-radius: 10px;
+  border-radius: $border-radius-lg;
   line-height: 1.5rem;
   th {
     padding: $padd;

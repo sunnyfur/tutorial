@@ -12,8 +12,8 @@ const Table = () => (
       <TableRow isHeader={isHeader} />
     </thead>
     <tbody>
-      {words.map((word, index) => (
-        <TableRow word={word} isEdit={index === 3 && true} />
+      {words.map((word) => (
+        <TableRow word={word} key={word.id} />
       ))}
     </tbody>
   </table>
