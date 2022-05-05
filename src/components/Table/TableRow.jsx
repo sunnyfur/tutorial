@@ -12,9 +12,18 @@ const header = {
 
 const TableRow = ({ word, isHeader = false }) => {
   const [isEdit, isEditChange] = useState(false);
+  const [wordEdit, wordEditChange] = useState(word);
+
+  const wordBefore = word;
+
   const editHandle = () => {
     isEditChange(!isEdit);
   };
+  const abortHandle = () => {
+    wordEditChange(wordBefore);
+    editHandle();
+  };
+
   return isHeader ? (
     <tr className={styles.wrapper}>
       <th>{header.english}</th>
@@ -27,23 +36,36 @@ const TableRow = ({ word, isHeader = false }) => {
     <tr className={isEdit ? styles.isEdit : undefined}>
       <TableData
         textHeader={header.english}
-        text={word.english}
+        text={wordEdit.english}
         isEdit={isEdit}
+        onChange={(event) =>
+          wordEditChange({ ...wordEdit, english: event.target.value })
+        }
       />
       <TableData
         textHeader={header.transcription}
-        text={word.transcription}
+        text={wordEdit.transcription}
         isEdit={isEdit}
+        onChange={(event) =>
+          wordEditChange({ ...wordEdit, transcription: event.target.value })
+        }
       />
       <TableData
         textHeader={header.russian}
-        text={word.russian}
+        text={wordEdit.russian}
         isEdit={isEdit}
+        onChange={(event) =>
+          wordEditChange({ ...wordEdit, russian: event.target.value })
+        }
       />
       <TableData textHeader={header.tags} text={word.tags} isEdit={isEdit} />
 
       <td>
-        <ButtonsCRUD isSave={isEdit} onClick={editHandle} />
+        <ButtonsCRUD
+          isSave={isEdit}
+          onEdit={editHandle}
+          onAbort={abortHandle}
+        />
       </td>
     </tr>
   );

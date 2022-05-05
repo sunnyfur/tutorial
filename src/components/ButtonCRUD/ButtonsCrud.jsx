@@ -14,13 +14,20 @@ const edit = <FontAwesomeIcon icon={faPencil} />;
 const del = <FontAwesomeIcon icon={faTrash} />;
 const cancel = <FontAwesomeIcon icon={faXmark} />;
 
-const ButtonsCRUD = ({ isSave, onClick }) => (
+const ButtonsCRUD = ({ isSave, onEdit, onAbort }) => (
   <div className={styles.wrapper}>
     {isSave ? (
       <>
-        <div className={classnames(styles.butt, styles.buttSave)}> {save}</div>
         <div
-          onClick={onClick}
+          onClick={onEdit}
+          aria-hidden='true'
+          className={classnames(styles.butt, styles.buttSave)}
+        >
+          {' '}
+          {save}
+        </div>
+        <div
+          onClick={onAbort}
           aria-hidden='true'
           className={classnames(styles.butt, styles.buttEdit)}
         >
@@ -30,7 +37,7 @@ const ButtonsCRUD = ({ isSave, onClick }) => (
     ) : (
       <>
         <div
-          onClick={onClick}
+          onClick={onEdit}
           aria-hidden='true'
           className={classnames(styles.butt, styles.buttEdit)}
         >
