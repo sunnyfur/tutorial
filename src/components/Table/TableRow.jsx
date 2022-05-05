@@ -13,15 +13,18 @@ const header = {
 const TableRow = ({ word, isHeader = false }) => {
   const [isEdit, isEditChange] = useState(false);
   const [wordEdit, wordEditChange] = useState(word);
-
-  const wordBefore = word;
-
   const editHandle = () => {
     isEditChange(!isEdit);
   };
   const abortHandle = () => {
-    wordEditChange(wordBefore);
+    wordEditChange(word);
     editHandle();
+  };
+  const changeHandle = (event) => {
+    wordEditChange((prevState) => ({
+      ...prevState,
+      [event.target.dataset.name]: event.target.value,
+    }));
   };
 
   return isHeader ? (
@@ -38,25 +41,22 @@ const TableRow = ({ word, isHeader = false }) => {
         textHeader={header.english}
         text={wordEdit.english}
         isEdit={isEdit}
-        onChange={(event) =>
-          wordEditChange({ ...wordEdit, english: event.target.value })
-        }
+        data='english'
+        onChange={changeHandle}
       />
       <TableData
         textHeader={header.transcription}
         text={wordEdit.transcription}
         isEdit={isEdit}
-        onChange={(event) =>
-          wordEditChange({ ...wordEdit, transcription: event.target.value })
-        }
+        data='transcription'
+        onChange={changeHandle}
       />
       <TableData
         textHeader={header.russian}
         text={wordEdit.russian}
         isEdit={isEdit}
-        onChange={(event) =>
-          wordEditChange({ ...wordEdit, russian: event.target.value })
-        }
+        data='russian'
+        onChange={changeHandle}
       />
       <TableData textHeader={header.tags} text={word.tags} isEdit={isEdit} />
 
