@@ -1,13 +1,14 @@
 import { useState } from 'react';
 
 import ButtonCommon from '../ButtonCommon/ButtonCommon';
+
 import styles from '../../assets/styles/Components/card.module.scss';
 
-import words from '../../mock/words.json';
+// import words from '../../mock/words.json';
 
-const word = words[0];
+// const word = words[0];
 
-const Card = () => {
+const Card = ({ word }) => {
   const [isShow, isShowChange] = useState(false);
   return (
     <div className={styles.card}>
@@ -20,6 +21,7 @@ const Card = () => {
       ) : (
         <span className={styles.russian}>{word.russian}</span>
       )}
+      {/* <Btn id='123' title='fgfvfvgf' /> */}
     </div>
   );
 };

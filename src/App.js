@@ -2,7 +2,8 @@ import * as classnames from 'classnames';
 
 import Header from './components/Header/Header';
 import Table from './components/Table/Table';
-import Card from './components/Card/Card';
+import CardContainer from './components/CardContainer/CardContainer';
+import Counter from './components/CardContainer/Counter';
 import Footer from './components/Footer/Footer';
 
 import styles from './assets/styles/Components/page.module.scss';
@@ -15,8 +16,9 @@ const App = () => (
       <Table />
     </main>
     <div className={styles.container}>
-      <Card />
+      <CardContainer />
     </div>
+    <Counter />
     <Footer className={classnames(styles.container, styles.footer)} />
   </div>
 );
