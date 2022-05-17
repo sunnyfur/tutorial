@@ -1,32 +1,60 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
+
 import Card from '../Card/Card';
+
+import styles from '../../assets/styles/Components/cardContainer.module.scss';
+import stylesBtn from '../../assets/styles/Components/buttons.module.scss';
 
 import words from '../../mock/words.json';
 
-// let wordsForCards = [{}];
+// const wordsForCards = [...words];
+
+const getWords = () => {
+  // fetch
+  console.log(words);
+  return [...words];
+};
+
+const caretL = <FontAwesomeIcon icon={faCaretLeft} />;
+const caretR = <FontAwesomeIcon icon={faCaretRight} />;
 
 const CardContainer = ({ index = 0 }) => {
   const [indexCard, setIndexCard] = useState(index);
+  const [wordsList, setWordsList] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const wordsRes = getWords();
+    setWordsList(wordsRes);
+    if (wordsRes) setIsLoaded(true);
+    // wordsForCards = [...words];
+    // alert('Hello');
+    // обращение к API
+  }, []);
 
   const prevCard = () => {
-    if (indexCard === 0) setIndexCard(words.length - 1);
+    if (indexCard === 0) setIndexCard(wordsList.length - 1);
     else setIndexCard(indexCard - 1);
   };
   const nextCard = () => {
-    if (indexCard + 1 === words.length) setIndexCard(0);
+    if (indexCard + 1 === wordsList.length) setIndexCard(0);
     else setIndexCard(indexCard + 1);
   };
 
-  return (
-    <div>
-      <button type='button' onClick={prevCard}>
-        Prev
+  return isLoaded === true && wordsList.length > 0 ? (
+    <div className={styles.wrapper}>
+      <button className={stylesBtn.btnComm} type='button' onClick={prevCard}>
+        {caretL}
       </button>
-      <Card word={words[indexCard]} />
-      <button type='button' onClick={nextCard}>
-        Next
+      <Card word={wordsList[indexCard]} />
+      <button className={stylesBtn.btnComm} type='button' onClick={nextCard}>
+        {caretR}
       </button>
     </div>
+  ) : (
+    <div>Загрузка</div>
   );
 };
 
