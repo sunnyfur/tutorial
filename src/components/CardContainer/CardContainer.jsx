@@ -3,12 +3,13 @@ import Card from '../Card/Card';
 
 import words from '../../mock/words.json';
 
+// let wordsForCards = [{}];
+
 const CardContainer = ({ index = 0 }) => {
   const [indexCard, setIndexCard] = useState(index);
-  let wordsForCards;
 
   const prevCard = () => {
-    if (indexCard === 0) setIndexCard(wordsForCards.length - 1);
+    if (indexCard === 0) setIndexCard(words.length - 1);
     else setIndexCard(indexCard - 1);
   };
   const nextCard = () => {

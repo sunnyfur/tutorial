@@ -4,10 +4,6 @@ import ButtonCommon from '../ButtonCommon/ButtonCommon';
 
 import styles from '../../assets/styles/Components/card.module.scss';
 
-// import words from '../../mock/words.json';
-
-// const word = words[0];
-
 const Card = ({ word }) => {
   const [isShow, isShowChange] = useState(false);
   return (
@@ -21,7 +17,6 @@ const Card = ({ word }) => {
       ) : (
         <span className={styles.russian}>{word.russian}</span>
       )}
-      {/* <Btn id='123' title='fgfvfvgf' /> */}
     </div>
   );
 };
