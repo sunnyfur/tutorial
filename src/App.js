@@ -19,6 +19,7 @@ const App = () => (
       <CardContainer />
     </div>
     <Counter />
+
     <Footer className={classnames(styles.container, styles.footer)} />
   </div>
 );

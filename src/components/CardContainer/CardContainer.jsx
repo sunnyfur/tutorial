@@ -1,60 +1,44 @@
 import { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 
-import Card from '../Card/Card';
-
-import styles from '../../assets/styles/Components/cardContainer.module.scss';
-import stylesBtn from '../../assets/styles/Components/buttons.module.scss';
+import CardCarousel from './CardCarousel';
+import ButtonCommon from '../ButtonCommon/ButtonCommon';
 
 import words from '../../mock/words.json';
 
-// const wordsForCards = [...words];
-
-const getWords = () => {
+const getWords = (nextWords) => {
   // fetch
-  console.log(words);
+  console.log(nextWords);
   return [...words];
 };
 
-const caretL = <FontAwesomeIcon icon={faCaretLeft} />;
-const caretR = <FontAwesomeIcon icon={faCaretRight} />;
-
-const CardContainer = ({ index = 0 }) => {
-  const [indexCard, setIndexCard] = useState(index);
+const CardContainer = () => {
   const [wordsList, setWordsList] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [nextWords, setNextWords] = useState(0);
 
   useEffect(() => {
-    const wordsRes = getWords();
-    setWordsList(wordsRes);
-    if (wordsRes) setIsLoaded(true);
-    // wordsForCards = [...words];
-    // alert('Hello');
     // обращение к API
-  }, []);
+    console.log('Обратились к API');
+    const wordsRes = getWords(nextWords);
+    setWordsList(wordsRes);
+    setIsLoading(false);
+  }, [nextWords]);
 
-  const prevCard = () => {
-    if (indexCard === 0) setIndexCard(wordsList.length - 1);
-    else setIndexCard(indexCard - 1);
-  };
-  const nextCard = () => {
-    if (indexCard + 1 === wordsList.length) setIndexCard(0);
-    else setIndexCard(indexCard + 1);
+  const handleClick = () => {
+    console.log(27, 'Переподключение');
+    setIsLoading(true);
+    setNextWords(wordsList.length);
   };
 
-  return isLoaded === true && wordsList.length > 0 ? (
-    <div className={styles.wrapper}>
-      <button className={stylesBtn.btnComm} type='button' onClick={prevCard}>
-        {caretL}
-      </button>
-      <Card word={wordsList[indexCard]} />
-      <button className={stylesBtn.btnComm} type='button' onClick={nextCard}>
-        {caretR}
-      </button>
+  if (isLoading) {
+    return <div>Загрузка</div>;
+  }
+
+  return (
+    <div>
+      <CardCarousel wordsList={wordsList} />
+      <ButtonCommon text='Следующие карточки' onClick={handleClick} />
     </div>
-  ) : (
-    <div>Загрузка</div>
   );
 };
 

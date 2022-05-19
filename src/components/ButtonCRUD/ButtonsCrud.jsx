@@ -23,7 +23,6 @@ const ButtonsCRUD = ({ isSave, onEdit, onAbort }) => (
           aria-hidden='true'
           className={classnames(styles.butt, styles.buttSave)}
         >
-          {' '}
           {save}
         </div>
         <div
@@ -41,7 +40,6 @@ const ButtonsCRUD = ({ isSave, onEdit, onAbort }) => (
           aria-hidden='true'
           className={classnames(styles.butt, styles.buttEdit)}
         >
-          {' '}
           {edit}
         </div>
         <div className={classnames(styles.butt, styles.buttDelete)}>{del}</div>
