@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import CardCarousel from './CardCarousel';
 import ButtonCommon from '../ButtonCommon/ButtonCommon';
+import styles from '../../assets/styles/Components/cardContainer.module.scss';
 
 import words from '../../mock/words.json';
 
@@ -35,7 +36,7 @@ const CardContainer = () => {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <CardCarousel wordsList={wordsList} />
       <ButtonCommon text='Следующие карточки' onClick={handleClick} />
     </div>

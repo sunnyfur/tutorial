@@ -3,3 +3,11 @@
   align-items: center;
   gap: 50px;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  align-items: center;
+  margin: 30px;
+}

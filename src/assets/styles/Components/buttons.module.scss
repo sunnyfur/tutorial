@@ -8,8 +8,10 @@
   padding: 10px 15px;
   color: $color-stroke2;
   font-weight: bold;
+  transition: color 300ms ease-in;
   &:hover {
     background: $color-btn-third;
     color: $color-tb-text;
+    transition: color 300ms ease-in;
   }
 }
