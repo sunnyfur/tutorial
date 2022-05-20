@@ -3,7 +3,6 @@ import * as classnames from 'classnames';
 import Header from './components/Header/Header';
 import Table from './components/Table/Table';
 import CardContainer from './components/CardContainer/CardContainer';
-// import Test from './components/CardContainer/Test';
 import Counter from './components/CardContainer/Counter';
 import Footer from './components/Footer/Footer';
 
@@ -20,7 +19,6 @@ const App = () => (
       <CardContainer />
     </div>
     <Counter />
-    {/* <Test /> */}
 
     <Footer className={classnames(styles.container, styles.footer)} />
   </div>
