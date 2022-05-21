@@ -16,23 +16,31 @@ const CardCarousel = ({ wordsList = [], index = 0 }) => {
   const [indexCard, setIndexCard] = useState(index);
   const [animate, setAnimate] = useState(false);
 
-  const prevCard = () => {
-    // TODO если достигли начала сообщить, что достигли начала
-    setIndexCard(indexCard === 0 ? wordsList.length - 1 : indexCard - 1);
-    setAnimate(!animate);
-  };
-  const nextCard = () => {
-    setIndexCard(indexCard + 1 === wordsList.length ? 0 : indexCard + 1);
+  const switchCards = (side) => {
+    switch (side) {
+      case 'right':
+        setIndexCard(indexCard + 1 === wordsList.length ? 0 : indexCard + 1);
+        break;
+      case 'left':
+        setIndexCard(indexCard === 0 ? wordsList.length - 1 : indexCard - 1);
+
+        break;
+      default:
+    }
     setAnimate(!animate);
   };
 
   if (wordsList.length > 0) {
     return (
       <div className={styles.wrapper}>
-        <button className={stylesBtn.btnComm} type='button' onClick={prevCard}>
+        <button
+          className={stylesBtn.btnComm}
+          type='button'
+          onClick={() => switchCards('left')}
+        >
           {caretL}
         </button>
-        <SwitchTransition mode='in-out'>
+        <SwitchTransition mode='out-in'>
           <CSSTransition
             classNames='carousel'
             addEndListener={(node, done) => {
@@ -44,7 +52,11 @@ const CardCarousel = ({ wordsList = [], index = 0 }) => {
             <Card word={wordsList[indexCard]} />
           </CSSTransition>
         </SwitchTransition>
-        <button className={stylesBtn.btnComm} type='button' onClick={nextCard}>
+        <button
+          className={stylesBtn.btnComm}
+          type='button'
+          onClick={() => switchCards('right')}
+        >
           {caretR}
         </button>
       </div>
