@@ -14,13 +14,16 @@ const caretR = <FontAwesomeIcon icon={faCaretRight} />;
 
 const CardCarousel = ({ wordsList = [], index = 0 }) => {
   const [indexCard, setIndexCard] = useState(index);
+  const [animate, setAnimate] = useState(false);
 
   const prevCard = () => {
     // TODO если достигли начала сообщить, что достигли начала
     setIndexCard(indexCard === 0 ? wordsList.length - 1 : indexCard - 1);
+    setAnimate(!animate);
   };
   const nextCard = () => {
     setIndexCard(indexCard + 1 === wordsList.length ? 0 : indexCard + 1);
+    setAnimate(!animate);
   };
 
   if (wordsList.length > 0) {
@@ -29,8 +32,15 @@ const CardCarousel = ({ wordsList = [], index = 0 }) => {
         <button className={stylesBtn.btnComm} type='button' onClick={prevCard}>
           {caretL}
         </button>
-        <SwitchTransition mode='out-in'>
-          <CSSTransition classNames='carousel' timeout={1000} key={indexCard}>
+        <SwitchTransition mode='in-out'>
+          <CSSTransition
+            classNames='carousel'
+            addEndListener={(node, done) => {
+              node.addEventListener('transitionened', done);
+            }}
+            timeout={500}
+            key={animate}
+          >
             <Card word={wordsList[indexCard]} />
           </CSSTransition>
         </SwitchTransition>
