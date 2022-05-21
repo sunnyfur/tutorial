@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import ButtonCommon from '../ButtonCommon/ButtonCommon';
 
@@ -6,16 +6,25 @@ import styles from '../../assets/styles/Components/card.module.scss';
 
 const Card = ({ word }) => {
   const [isShow, isShowChange] = useState(false);
+
+  const handleClick = () => {
+    isShowChange(!isShow);
+  };
+
+  useEffect(() => {
+    isShowChange(false);
+  }, [word]);
+
   return (
     <div className={styles.card}>
       <div className={styles.wordContainer}>
-        <span className={styles.word}> {word.english}</span>
-        <span className={styles.transcription}> {word.transcription}</span>
+        <span className={styles.word}> {word?.english}</span>
+        <span className={styles.transcription}> {word?.transcription}</span>
       </div>
       {!isShow ? (
-        <ButtonCommon text='Проверить' onClick={() => isShowChange(!isShow)} />
+        <ButtonCommon text='Проверить' onClick={handleClick} />
       ) : (
-        <span className={styles.russian}>{word.russian}</span>
+        <span className={styles.russian}>{word?.russian}</span>
       )}
     </div>
   );

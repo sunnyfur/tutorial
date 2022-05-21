@@ -13,6 +13,10 @@
   background-color: $color-card;
   border: $color-stroke solid 1px;
   border-radius: $border-radius-lg;
+  &:hover {
+    box-shadow: 0px 0px 8px 4px rgba(34, 60, 80, 0.2);
+    transition: box-shadow 300ms ease-in-out;
+  }
 }
 
 .wordContainer {

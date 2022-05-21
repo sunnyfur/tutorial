@@ -10,17 +10,17 @@ const header = {
   tags: 'Tags',
 };
 
-const TableRow = ({ word, isHeader = false }) => {
+const TableRow = ({ word, isHeader = false }, handleDelete) => {
   const [isEdit, isEditChange] = useState(false);
   const [wordEdit, wordEditChange] = useState(word);
-  const editHandle = () => {
+  const handleEdit = () => {
     isEditChange(!isEdit);
   };
-  const abortHandle = () => {
+  const handleAbort = () => {
     wordEditChange(word);
-    editHandle();
+    handleEdit();
   };
-  const changeHandle = (event) => {
+  const handleChange = (event) => {
     wordEditChange((prevState) => ({
       ...prevState,
       [event.target.dataset.name]: event.target.value,
@@ -42,29 +42,30 @@ const TableRow = ({ word, isHeader = false }) => {
         text={wordEdit.english}
         isEdit={isEdit}
         data='english'
-        onChange={changeHandle}
+        onChange={handleChange}
       />
       <TableData
         textHeader={header.transcription}
         text={wordEdit.transcription}
         isEdit={isEdit}
         data='transcription'
-        onChange={changeHandle}
+        onChange={handleChange}
       />
       <TableData
         textHeader={header.russian}
         text={wordEdit.russian}
         isEdit={isEdit}
         data='russian'
-        onChange={changeHandle}
+        onChange={handleChange}
       />
       <TableData textHeader={header.tags} text={word.tags} isEdit={isEdit} />
 
       <td>
         <ButtonsCRUD
           isSave={isEdit}
-          onEdit={editHandle}
-          onAbort={abortHandle}
+          onEdit={handleEdit}
+          onAbort={handleAbort}
+          onDelete={handleDelete}
         />
       </td>
     </tr>

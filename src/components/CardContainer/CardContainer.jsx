@@ -1,31 +1,44 @@
-import { useState } from 'react';
-import Card from '../Card/Card';
+import { useState, useEffect } from 'react';
+
+import CardCarousel from './CardCarousel';
+import ButtonCommon from '../ButtonCommon/ButtonCommon';
+import styles from '../../assets/styles/Components/cardContainer.module.scss';
 
 import words from '../../mock/words.json';
 
-// let wordsForCards = [{}];
+const getWords = (nextWords) => {
+  // fetch
+  console.log(nextWords);
+  return [...words];
+};
 
-const CardContainer = ({ index = 0 }) => {
-  const [indexCard, setIndexCard] = useState(index);
+const CardContainer = () => {
+  const [wordsList, setWordsList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [nextWords, setNextWords] = useState(0);
 
-  const prevCard = () => {
-    if (indexCard === 0) setIndexCard(words.length - 1);
-    else setIndexCard(indexCard - 1);
+  useEffect(() => {
+    // обращение к API
+    console.log('Обратились к API');
+    const wordsRes = getWords(nextWords);
+    setWordsList(wordsRes);
+    setIsLoading(false);
+  }, [nextWords]);
+
+  const handleClick = () => {
+    console.log(27, 'Переподключение');
+    setIsLoading(true);
+    setNextWords(wordsList.length);
   };
-  const nextCard = () => {
-    if (indexCard + 1 === words.length) setIndexCard(0);
-    else setIndexCard(indexCard + 1);
-  };
+
+  if (isLoading) {
+    return <div>Загрузка</div>;
+  }
 
   return (
-    <div>
-      <button type='button' onClick={prevCard}>
-        Prev
-      </button>
-      <Card word={words[indexCard]} />
-      <button type='button' onClick={nextCard}>
-        Next
-      </button>
+    <div className={styles.container}>
+      <CardCarousel wordsList={wordsList} />
+      <ButtonCommon text='Следующие карточки' onClick={handleClick} />
     </div>
   );
 };

@@ -14,7 +14,7 @@ const edit = <FontAwesomeIcon icon={faPencil} />;
 const del = <FontAwesomeIcon icon={faTrash} />;
 const cancel = <FontAwesomeIcon icon={faXmark} />;
 
-const ButtonsCRUD = ({ isSave, onEdit, onAbort }) => (
+const ButtonsCRUD = ({ isSave, onEdit, onAbort, onDelete }) => (
   <div className={styles.wrapper}>
     {isSave ? (
       <>
@@ -23,7 +23,6 @@ const ButtonsCRUD = ({ isSave, onEdit, onAbort }) => (
           aria-hidden='true'
           className={classnames(styles.butt, styles.buttSave)}
         >
-          {' '}
           {save}
         </div>
         <div
@@ -41,10 +40,15 @@ const ButtonsCRUD = ({ isSave, onEdit, onAbort }) => (
           aria-hidden='true'
           className={classnames(styles.butt, styles.buttEdit)}
         >
-          {' '}
           {edit}
         </div>
-        <div className={classnames(styles.butt, styles.buttDelete)}>{del}</div>
+        <div
+          onClick={onDelete}
+          aria-hidden='true'
+          className={classnames(styles.butt, styles.buttDelete)}
+        >
+          {del}
+        </div>
       </>
     )}
   </div>
