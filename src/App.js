@@ -3,6 +3,7 @@ import * as classnames from 'classnames';
 import Header from './components/Header/Header';
 import Table from './components/Table/Table';
 import CardContainer from './components/CardContainer/CardContainer';
+
 import Counter from './components/CardContainer/Counter';
 import Footer from './components/Footer/Footer';
 

@@ -1,44 +1,41 @@
-// .carousel-enter {
-//   opacity: 0.01;
-//   // transform: translateX(-100%);
-// }
-
-// .carousel-enter.carousel-enter-active {
-//   opacity: 1;
-//   // transform: translateX(0%);
-//   transition: opacity 500ms ease-in;
-// }
-
-// .carousel-leave {
-//   opacity: 1;
-//   // transform: translateX(100%);
-// }
-
-// .carousel-leave.carousel-leave-active {
-//   opacity: 0.01;
-//   // transform: translateX(0%);
-//   transition: opacity 300ms ease-in;
-// }
-
 .carousel-enter {
   opacity: 0;
-  transform: translateX(-100%);
+  transform: translateX(-30%);
 }
-
 .carousel-enter-active {
   opacity: 1;
   transform: translateX(0%);
 }
-
 .carousel-exit {
   opacity: 1;
   transform: translateX(0%);
 }
 .carousel-exit-active {
   opacity: 0;
-  transform: translateX(100%);
+  transform: translateX(30%);
+}
+.carousel-enter-active,
+.carousel-exit-active {
+  transition: opacity 300ms, transform 500ms;
 }
 
-.carousel-enter-active .carousel-exit-active {
-  transition: opacity 500ms, transform 500ms;
+.carouselL-enter {
+  opacity: 0;
+  transform: translateX(30%);
+}
+.carouselL-enter-active {
+  opacity: 1;
+  transform: translateX(0%);
+}
+.carouselL-exit {
+  opacity: 1;
+  transform: translateX(0%);
+}
+.carouselL-exit-active {
+  opacity: 0;
+  transform: translateX(-30%);
+}
+.carouselL-enter-active,
+.carouselL-exit-active {
+  transition: opacity 300ms, transform 300ms;
 }

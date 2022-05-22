@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
@@ -14,20 +14,29 @@ const caretR = <FontAwesomeIcon icon={faCaretRight} />;
 
 const CardCarousel = ({ wordsList = [], index = 0 }) => {
   const [indexCard, setIndexCard] = useState(index);
-  const [animate, setAnimate] = useState(false);
+  // const [animate, setAnimate] = useState({ anim: false, carousel: 'carousel' });
+  const carousel = useRef('carousel');
 
+  // let carouselNew = 'carousel';
+  let indexNew;
   const switchCards = (side) => {
     switch (side) {
       case 'right':
-        setIndexCard(indexCard + 1 === wordsList.length ? 0 : indexCard + 1);
+        // carouselNew = 'carousel';
+        carousel.current = 'carousel';
+        indexNew = indexCard + 1 === wordsList.length ? 0 : indexCard + 1;
+
         break;
       case 'left':
-        setIndexCard(indexCard === 0 ? wordsList.length - 1 : indexCard - 1);
+        // carouselNew = 'carouselR';
+        carousel.current = 'carouselL';
+        indexNew = indexCard === 0 ? wordsList.length - 1 : indexCard - 1;
 
         break;
       default:
     }
-    setAnimate(!animate);
+    // setAnimate({ anim: !animate.anim, carousel: carouselNew });
+    setIndexCard(indexNew);
   };
 
   if (wordsList.length > 0) {
@@ -42,12 +51,14 @@ const CardCarousel = ({ wordsList = [], index = 0 }) => {
         </button>
         <SwitchTransition mode='out-in'>
           <CSSTransition
-            classNames='carousel'
+            classNames={
+              carousel.current === 'carousel' ? 'carousel' : 'carouselL'
+            }
             addEndListener={(node, done) => {
               node.addEventListener('transitionened', done);
             }}
             timeout={500}
-            key={animate}
+            key={indexCard}
           >
             <Card word={wordsList[indexCard]} />
           </CSSTransition>
