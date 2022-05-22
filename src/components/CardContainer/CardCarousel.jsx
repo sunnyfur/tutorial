@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
@@ -14,9 +14,12 @@ const caretR = <FontAwesomeIcon icon={faCaretRight} />;
 
 const CardCarousel = ({ wordsList = [], index = 0 }) => {
   const [indexCard, setIndexCard] = useState(index);
+  const [animate, setAnimate] = useState(false);
   // const [animate, setAnimate] = useState({ anim: false, carousel: 'carousel' });
   const carousel = useRef('carousel');
-
+  useEffect(() => {
+    setAnimate(!animate);
+  }, [indexCard]);
   // let carouselNew = 'carousel';
   let indexNew;
   const switchCards = (side) => {
@@ -54,11 +57,12 @@ const CardCarousel = ({ wordsList = [], index = 0 }) => {
             classNames={
               carousel.current === 'carousel' ? 'carousel' : 'carouselL'
             }
-            addEndListener={(node, done) => {
-              node.addEventListener('transitionened', done);
-            }}
+            // addEndListener={(node, done) => {
+            //   node.addEventListener('transitionened', done);
+            // }}
+            in={indexCard}
             timeout={500}
-            key={indexCard}
+            key={animate}
           >
             <Card word={wordsList[indexCard]} />
           </CSSTransition>
