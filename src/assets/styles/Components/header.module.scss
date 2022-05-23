@@ -1,0 +1,50 @@
+@import '../colors';
+.nav {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+img {
+  object-fit: cover;
+}
+
+a {
+  font-size: 1.5rem;
+  color: $color-tb-text;
+  text-decoration: none;
+  padding: 10px 0;
+  position: relative;
+  transition: all 0.4s ease-in-out;
+
+  &::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    border-radius: 1px;
+    background: $pink;
+    width: 0;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) all;
+  }
+  &:hover {
+    color: $pink;
+  }
+  &:hover::after,
+  &:focus::after {
+    width: 100%;
+  }
+}

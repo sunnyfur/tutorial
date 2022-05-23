@@ -9,24 +9,42 @@ $padd: 8px;
   border: solid $color-stroke 1px;
   border-radius: $border-radius-lg;
   line-height: 1.5rem;
+  transition: background-color 2s ease-in-out 100ms;
   th {
     padding: $padd;
     font-size: 14px;
     letter-spacing: 1px;
     color: $color-tb-text;
+
     background-color: $color-tb-head;
+    &:first-of-type {
+      border-radius: $border-radius-lg 0 0 0;
+    }
+    &:last-of-type {
+      border-radius: 0 $border-radius-lg 0 0;
+    }
   }
   tr {
+    transition: background-color 100ms ease-in-out;
     padding: $padd;
     text-align: center;
     &:hover {
-      background: $color-selection;
+      background-color: $color-selection;
       color: $color-tb-text;
     }
   }
-  td {
-    padding: $padd;
+  tr:last-of-type:hover {
+    td:first-of-type {
+      border-radius: 0 0 0 $border-radius-lg;
+    }
+    td:last-of-type {
+      border-radius: 0 0 $border-radius-lg 0;
+    }
   }
+
+  // td {
+  //   padding: $padd;
+  // }
 
   @media screen and (max-width: $tablet) {
     border: 0;

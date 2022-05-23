@@ -18,7 +18,7 @@ const CardCarousel = ({ wordsList = [], index = 0 }) => {
   // const [animate, setAnimate] = useState({ anim: false, carousel: 'carousel' });
   const carousel = useRef('carousel');
   useEffect(() => {
-    setAnimate(!animate);
+    setAnimate((newAnimate) => !newAnimate);
   }, [indexCard]);
   // let carouselNew = 'carousel';
   let indexNew;
