@@ -1,0 +1,32 @@
+@import '../colors';
+.img {
+  object-fit: cover;
+}
+.wrapper {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  grid-template-areas:
+    'notF people'
+    'text people';
+  gap: 20px;
+}
+
+.text {
+  text-transform: uppercase;
+  font-size: large;
+
+  color: $color-text-sub;
+  align-self: start;
+  grid-area: text;
+}
+
+.notF {
+  align-self: end;
+  grid-area: notF;
+}
+
+.people {
+  grid-area: people;
+}
