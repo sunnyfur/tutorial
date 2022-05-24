@@ -14,7 +14,7 @@ const edit = <FontAwesomeIcon icon={faPencil} />;
 const del = <FontAwesomeIcon icon={faTrash} />;
 const cancel = <FontAwesomeIcon icon={faXmark} />;
 
-const ButtonsCRUD = ({ isSave, onEdit, onAbort, onDelete }) => (
+const ButtonsCRUD = ({ isSave, onEdit, onAbort }) => (
   <div className={styles.wrapper}>
     {isSave ? (
       <>
@@ -43,7 +43,7 @@ const ButtonsCRUD = ({ isSave, onEdit, onAbort, onDelete }) => (
           {edit}
         </div>
         <div
-          onClick={onDelete}
+          // onClick={onDelete}
           aria-hidden='true'
           className={classnames(styles.butt, styles.buttDelete)}
         >

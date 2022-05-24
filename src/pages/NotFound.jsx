@@ -1,7 +1,7 @@
 import * as classnames from 'classnames';
-import styles from '../../assets/styles/Components/notFound.module.scss';
-import people from '../../assets/images/people.svg';
-import notF from '../../assets/images/404.svg';
+import styles from '../assets/styles/Components/notFound.module.scss';
+import people from '../assets/images/people.svg';
+import notF from '../assets/images/404.svg';
 
 const NotFound = () => (
   <div className={styles.wrapper}>

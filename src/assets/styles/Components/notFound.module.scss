@@ -1,4 +1,5 @@
 @import '../colors';
+@import '../vars';
 .img {
   object-fit: cover;
 }
@@ -11,6 +12,12 @@
     'notF people'
     'text people';
   gap: 20px;
+  @media (max-width: $mobile) {
+    grid-template-areas:
+      'notF '
+      'text '
+      'people';
+  }
 }
 
 .text {

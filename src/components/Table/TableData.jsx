@@ -5,7 +5,7 @@ const TableData = ({ textHeader, text, isEdit, onChange, data }) => (
   // const changeHandle = (event) => {
   //   onChange(event);
   // };
-  <td data-label={textHeader}>
+  <td className={styles.td} data-label={textHeader}>
     {isEdit ? (
       <input
         className={styles.input}

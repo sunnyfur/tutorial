@@ -2,15 +2,16 @@ import * as classnames from 'classnames';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-import Header from './components/Header/Header';
-import Table from './components/Table/Table';
-import CardContainer from './components/CardContainer/CardContainer';
+import Header from '../components/Header/Header';
+import Table from '../components/Table/Table';
+import CardContainer from '../components/CardContainer/CardContainer';
 
 // import Counter from './components/CardContainer/Counter';
-import Footer from './components/Footer/Footer';
+import Footer from '../components/Footer/Footer';
 
-import styles from './assets/styles/Components/page.module.scss';
-import NotFound from './components/NotFound/NotFound';
+import styles from '../assets/styles/Components/page.module.scss';
+import NotFound from './NotFound';
+import Card from '../components/Card/Card';
 
 const App = () => {
   const [shadowHeader, setShadowHeader] = useState(false);
@@ -39,7 +40,7 @@ const App = () => {
           <Routes>
             <Route index element={<Table />} />
             <Route path='/game' exact element={<CardContainer />} />
-
+            <Route path='/cards/:id' element={<Card />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </main>
