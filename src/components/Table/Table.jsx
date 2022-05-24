@@ -1,8 +1,8 @@
-import styles from '../../assets/styles/Components/table.module.scss';
-
 import TableRow from './TableRow';
 
 import words from '../../mock/words.json';
+
+import styles from '../../assets/styles/Components/table.module.scss';
 
 const isHeader = true;
 
@@ -11,7 +11,7 @@ const Table = () => (
     <thead>
       <TableRow isHeader={isHeader} />
     </thead>
-    <tbody>
+    <tbody className={styles.thead}>
       {words.map((word) => (
         <TableRow word={word} key={word.id} />
       ))}

@@ -9,24 +9,42 @@ $padd: 8px;
   border: solid $color-stroke 1px;
   border-radius: $border-radius-lg;
   line-height: 1.5rem;
+  transition: background-color 2s ease-in-out 100ms;
   th {
     padding: $padd;
     font-size: 14px;
     letter-spacing: 1px;
     color: $color-tb-text;
+
     background-color: $color-tb-head;
+    &:first-of-type {
+      border-radius: $border-radius-lg 0 0 0;
+    }
+    &:last-of-type {
+      border-radius: 0 $border-radius-lg 0 0;
+    }
   }
   tr {
+    transition: background-color 100ms ease-in-out;
     padding: $padd;
     text-align: center;
     &:hover {
-      background: $color-selection;
+      background-color: $color-selection;
       color: $color-tb-text;
     }
   }
-  td {
-    padding: $padd;
+  tr:last-of-type:hover {
+    .td:first-of-type {
+      border-radius: 0 0 0 $border-radius-lg;
+    }
+    .td:last-of-type {
+      border-radius: 0 0 $border-radius-lg 0;
+    }
   }
+
+  // td {
+  //   padding: $padd;
+  // }
 
   @media screen and (max-width: $tablet) {
     border: 0;
@@ -39,7 +57,7 @@ $padd: 8px;
       display: block;
       border: 1px solid $color-stroke2;
     }
-    td {
+    .td {
       display: block;
       text-align: right;
       font-size: 13px;
@@ -48,26 +66,26 @@ $padd: 8px;
     // td.left_text {
     //   text-align: right;
     // }
-    td.justify_text {
+    .td.justify_text {
       text-align: right;
     }
-    td:first-child {
+    .td:first-child {
       text-align: right;
     }
     // td.right_text {
     //   text-align: right;
     // }
-    td:last-child {
+    .td:last-child {
       border-bottom: 0;
     }
-    td:before {
+    .td:before {
       content: attr(data-label);
       float: left;
     }
   }
 }
 
-tbody tr:nth-child(even) {
+.tbody tr:nth-child(even) {
   background-color: $color-tb-row;
 }
 

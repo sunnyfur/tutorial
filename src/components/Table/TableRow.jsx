@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import styles from '../../assets/styles/Components/table.module.scss';
 import ButtonsCRUD from '../ButtonCRUD/ButtonsCrud';
 import TableData from './TableData';
@@ -44,6 +45,7 @@ const TableRow = ({ word, isHeader = false }, handleDelete) => {
         data='english'
         onChange={handleChange}
       />
+
       <TableData
         textHeader={header.transcription}
         text={wordEdit.transcription}
@@ -60,7 +62,7 @@ const TableRow = ({ word, isHeader = false }, handleDelete) => {
       />
       <TableData textHeader={header.tags} text={word.tags} isEdit={isEdit} />
 
-      <td>
+      <td className={styles.td}>
         <ButtonsCRUD
           isSave={isEdit}
           onEdit={handleEdit}

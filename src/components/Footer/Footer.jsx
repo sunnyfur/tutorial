@@ -1,6 +1,8 @@
+import Quot from '../Quot/Quot';
+
 const Footer = ({ className }) => (
   <footer className={className}>
-    <div>Footer</div>{' '}
+    <Quot />
   </footer>
 );
 export default Footer;

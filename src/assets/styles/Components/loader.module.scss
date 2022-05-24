@@ -1,0 +1,58 @@
+@import '../colors';
+
+.clear_loading {
+  text-align: center;
+
+  position: relative;
+  //   display: flex;
+
+  box-sizing: border-box;
+  //   display: inline-block;
+}
+
+.loading_effect_4 {
+  width: 200px;
+  height: 200px;
+
+  will-change: transform;
+
+  span {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-100%, 0);
+    transform-origin: 0 0;
+
+    &:first-child {
+      background: $pink;
+      animation: effectAnim 1.5s infinite ease-in-out;
+    }
+
+    &:nth-child(2) {
+      background: $dark-green;
+      animation: effectAnim 2s infinite ease-in-out;
+    }
+
+    &:nth-child(3) {
+      background: $coral;
+      animation: effectAnim 2.5s infinite ease-in-out;
+    }
+
+    &:nth-child(4) {
+      background: $dark-blue;
+      animation: effectAnim 3s infinite ease-in-out;
+    }
+  }
+}
+
+@keyframes effectAnim {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
