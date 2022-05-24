@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
@@ -17,21 +17,19 @@ const CardCarousel = ({ wordsList = [], index = 0 }) => {
   const [animate, setAnimate] = useState(false);
   // const [animate, setAnimate] = useState({ anim: false, carousel: 'carousel' });
   const carousel = useRef('carousel');
-  useEffect(() => {
-    setAnimate((newAnimate) => !newAnimate);
-  }, [indexCard]);
+  // useEffect(() => {
+  //   setAnimate((newAnimate) => !newAnimate);
+  // }, [indexCard]);
   // let carouselNew = 'carousel';
   let indexNew;
   const switchCards = (side) => {
     switch (side) {
       case 'right':
-        // carouselNew = 'carousel';
         carousel.current = 'carousel';
         indexNew = indexCard + 1 === wordsList.length ? 0 : indexCard + 1;
 
         break;
       case 'left':
-        // carouselNew = 'carouselR';
         carousel.current = 'carouselL';
         indexNew = indexCard === 0 ? wordsList.length - 1 : indexCard - 1;
 
@@ -39,7 +37,11 @@ const CardCarousel = ({ wordsList = [], index = 0 }) => {
       default:
     }
     // setAnimate({ anim: !animate.anim, carousel: carouselNew });
-    setIndexCard(indexNew);
+    const switchCard = async () => {
+      await setAnimate((newAnimate) => !newAnimate);
+      setIndexCard(indexNew);
+    };
+    switchCard();
   };
 
   if (wordsList.length > 0) {
@@ -54,12 +56,10 @@ const CardCarousel = ({ wordsList = [], index = 0 }) => {
         </button>
         <SwitchTransition mode='out-in'>
           <CSSTransition
-            classNames={
-              carousel.current === 'carousel' ? 'carousel' : 'carouselL'
-            }
-            // addEndListener={(node, done) => {
-            //   node.addEventListener('transitionened', done);
-            // }}
+            classNames={carousel.current}
+            addEndListener={(node, done) => {
+              node.addEventListener('transitionened', done);
+            }}
             in={indexCard}
             timeout={500}
             key={animate}

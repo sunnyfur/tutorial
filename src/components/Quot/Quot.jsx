@@ -1,39 +1,38 @@
 import { useEffect, useState } from 'react';
+import * as classnames from 'classnames';
 import styles from '../../assets/styles/Components/quote.module.scss';
 
 const Quot = () => {
-  const [quot, setQuot] = useState({
-    quoteText: 'The world makes way for the man who knows where he is going. ',
-    quoteAuthor: 'Ralph Emerson',
-  });
+  const [quot, setQuot] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch(
-      'https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json&json=?',
-      {
-        method: 'get',
-        mode: 'no-cors',
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error('Something went wrong ...');
-      })
-      .then((response) => setQuot(response))
-      .catch((err) => console.log(err));
+    const resp = async () => {
+      await fetch('https://forismatic-proxy.herokuapp.com/')
+        .then((response) => {
+          console.log('quot', response);
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error('Something went wrong ...');
+        })
+        // .then((response) => setQuot(response))
+        .then((response) => setQuot(response))
+        .catch((err) => console.log(err));
+      setIsLoading(false);
+    };
+    resp();
   }, []);
 
-  useEffect(() => {
-    setIsLoading(false);
-  }, [quot]);
+  // useEffect(() => {
+
+  // }, [quot]);
 
   if (isLoading) return <></>;
   return (
-    <figure className={styles.quote}>
+    <figure className={classnames(styles.quote, styles.quote_animate)}>
       <blockquote>{quot.quoteText}</blockquote>
+
       <figcaption>&mdash; {quot.quoteAuthor}</figcaption>
     </figure>
   );
