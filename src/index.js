@@ -1,5 +1,6 @@
 // import React from 'react';
 import ReactDOM from 'react-dom/client';
+
 import './index.css';
 import App from './pages/App';
 import reportWebVitals from './reportWebVitals';
@@ -7,7 +8,9 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>  //первый рендер делается два раза. из-за этого происходит двойной Fetch
+
   <App />
+
   // </React.StrictMode>
 );
 

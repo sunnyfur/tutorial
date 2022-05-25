@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import Header from '../components/Header/Header';
-import Table from '../components/Table/Table';
 import CardContainer from '../components/CardContainer/CardContainer';
 
 // import Counter from './components/CardContainer/Counter';
@@ -11,7 +10,9 @@ import Footer from '../components/Footer/Footer';
 
 import styles from '../assets/styles/Components/page.module.scss';
 import NotFound from './NotFound';
-import Card from '../components/Card/Card';
+import CardRoute from '../components/Card/CardRoute';
+import TablePage from './TablePage';
+import WordsApi from '../components/WordsApi/WordsApi';
 
 const App = () => {
   const [shadowHeader, setShadowHeader] = useState(false);
@@ -37,12 +38,16 @@ const App = () => {
         />
 
         <main className={classnames(styles.container, styles.main)}>
-          <Routes>
-            <Route index element={<Table />} />
-            <Route path='/game' exact element={<CardContainer />} />
-            <Route path='/cards/:id' element={<Card />} />
-            <Route path='*' element={<NotFound />} />
-          </Routes>
+          <WordsApi>
+            <Routes>
+              <Route index element={<TablePage />} />
+              <Route path='/game' exact element={<CardContainer />} />
+              <Route path='/cards'>
+                <Route path=':id' element={<CardRoute />} />
+              </Route>
+              <Route path='*' element={<NotFound />} />
+            </Routes>
+          </WordsApi>
         </main>
 
         <Footer className={classnames(styles.container, styles.footer)} />

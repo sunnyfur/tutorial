@@ -24,16 +24,18 @@ const Quot = () => {
     resp();
   }, []);
 
-  // useEffect(() => {
-
-  // }, [quot]);
+  const figcaption = () => {
+    if (quot.quoteAuthor)
+      return <figcaption> &mdash; {quot.quoteAuthor}</figcaption>;
+    return <></>;
+  };
 
   if (isLoading) return <></>;
   return (
     <figure className={classnames(styles.quote, styles.quote_animate)}>
       <blockquote>{quot.quoteText}</blockquote>
 
-      <figcaption>&mdash; {quot.quoteAuthor}</figcaption>
+      {figcaption()}
     </figure>
   );
 };

@@ -1,12 +1,11 @@
 import TableRow from './TableRow';
 
-import words from '../../mock/words.json';
-
 import styles from '../../assets/styles/Components/table.module.scss';
+// import { Link } from 'react-router-dom';
 
 const isHeader = true;
 
-const Table = () => (
+const Table = ({ words }) => (
   <table className={styles.table}>
     <thead>
       <TableRow isHeader={isHeader} />
