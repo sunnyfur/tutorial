@@ -7,6 +7,12 @@
   align-items: flex-end;
 
   text-align: right;
+  opacity: 0;
+}
+
+.quote_animate {
+  opacity: 1;
+  transition: all 3s;
 }
 
 blockquote {

@@ -11,7 +11,7 @@ const header = {
   tags: 'Tags',
 };
 
-const TableRow = ({ word, isHeader = false }, handleDelete) => {
+const TableRow = ({ word, isHeader = false }) => {
   const [isEdit, isEditChange] = useState(false);
   const [wordEdit, wordEditChange] = useState(word);
   const handleEdit = () => {
@@ -41,6 +41,7 @@ const TableRow = ({ word, isHeader = false }, handleDelete) => {
       <TableData
         textHeader={header.english}
         text={wordEdit.english}
+        id={wordEdit.id}
         isEdit={isEdit}
         data='english'
         onChange={handleChange}
@@ -67,7 +68,7 @@ const TableRow = ({ word, isHeader = false }, handleDelete) => {
           isSave={isEdit}
           onEdit={handleEdit}
           onAbort={handleAbort}
-          onDelete={handleDelete}
+          word={word}
         />
       </td>
     </tr>

@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
+import * as classnames from 'classnames';
 
 import Card from '../Card/Card';
 
@@ -15,66 +16,67 @@ const caretR = <FontAwesomeIcon icon={faCaretRight} />;
 const CardCarousel = ({ wordsList = [], index = 0 }) => {
   const [indexCard, setIndexCard] = useState(index);
   const [animate, setAnimate] = useState(false);
-  // const [animate, setAnimate] = useState({ anim: false, carousel: 'carousel' });
-  const carousel = useRef('carousel');
-  useEffect(() => {
-    setAnimate((newAnimate) => !newAnimate);
-  }, [indexCard]);
-  // let carouselNew = 'carousel';
+  const carousel = useRef('right');
+
   let indexNew;
   const switchCards = (side) => {
     switch (side) {
       case 'right':
-        // carouselNew = 'carousel';
-        carousel.current = 'carousel';
+        carousel.current = 'right';
         indexNew = indexCard + 1 === wordsList.length ? 0 : indexCard + 1;
 
         break;
       case 'left':
-        // carouselNew = 'carouselR';
-        carousel.current = 'carouselL';
+        carousel.current = 'left';
         indexNew = indexCard === 0 ? wordsList.length - 1 : indexCard - 1;
 
         break;
       default:
     }
-    // setAnimate({ anim: !animate.anim, carousel: carouselNew });
-    setIndexCard(indexNew);
+
+    const switchCard = async () => {
+      await setAnimate((newAnimate) => !newAnimate);
+      setIndexCard(indexNew);
+    };
+    switchCard();
   };
 
   if (wordsList.length > 0) {
     return (
-      <div className={styles.wrapper}>
-        <button
-          className={stylesBtn.btnComm}
-          type='button'
-          onClick={() => switchCards('left')}
-        >
-          {caretL}
-        </button>
-        <SwitchTransition mode='out-in'>
-          <CSSTransition
-            classNames={
-              carousel.current === 'carousel' ? 'carousel' : 'carouselL'
-            }
-            // addEndListener={(node, done) => {
-            //   node.addEventListener('transitionened', done);
-            // }}
-            in={indexCard}
-            timeout={500}
-            key={animate}
+      <>
+        <div className={classnames(carousel.current, styles.wrapper)}>
+          <button
+            className={stylesBtn.btnComm}
+            type='button'
+            onClick={() => switchCards('left')}
           >
-            <Card word={wordsList[indexCard]} />
-          </CSSTransition>
-        </SwitchTransition>
-        <button
-          className={stylesBtn.btnComm}
-          type='button'
-          onClick={() => switchCards('right')}
-        >
-          {caretR}
-        </button>
-      </div>
+            {caretL}
+          </button>
+          <SwitchTransition mode='out-in'>
+            <CSSTransition
+              classNames='carousel'
+              addEndListener={(node, done) => {
+                node.addEventListener('transitionened', done);
+              }}
+              timeout={500}
+              delay={300}
+              key={animate}
+            >
+              <Card word={wordsList[indexCard]} />
+            </CSSTransition>
+          </SwitchTransition>
+          <button
+            className={stylesBtn.btnComm}
+            type='button'
+            onClick={() => switchCards('right')}
+          >
+            {caretR}
+          </button>
+        </div>
+        <p>
+          Карточка {indexCard + 1} из {wordsList.length}
+        </p>
+      </>
     );
   }
 

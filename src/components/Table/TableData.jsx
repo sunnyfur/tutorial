@@ -1,7 +1,17 @@
 // import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from '../../assets/styles/Components/input.module.scss';
 
-const TableData = ({ textHeader, text, isEdit, onChange, data }) => (
+const textDisplay = (id, text) =>
+  id ? (
+    <Link to={`/cards/${id}`}>
+      <span>{text}</span>
+    </Link>
+  ) : (
+    <span>{text}</span>
+  );
+
+const TableData = ({ textHeader, text, isEdit, onChange, data, id }) => (
   // const changeHandle = (event) => {
   //   onChange(event);
   // };
@@ -14,7 +24,7 @@ const TableData = ({ textHeader, text, isEdit, onChange, data }) => (
         onChange={onChange}
       />
     ) : (
-      <span>{text}</span>
+      textDisplay(id, text)
     )}
   </td>
 );

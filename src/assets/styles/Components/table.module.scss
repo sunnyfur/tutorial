@@ -85,10 +85,19 @@ $padd: 8px;
   }
 }
 
-.tbody tr:nth-child(even) {
+tbody tr:nth-child(even) {
   background-color: $color-tb-row;
 }
 
 .isEdit {
   background-color: $color-isEdit !important;
+}
+
+a {
+  color: $color-tb-text;
+  //
+  :hover {
+    color: $green;
+    transition: color 0.5s ease;
+  }
 }
