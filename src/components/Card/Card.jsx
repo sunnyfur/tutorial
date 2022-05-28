@@ -1,18 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import ButtonCommon from '../ButtonCommon/ButtonCommon';
 
 import styles from '../../assets/styles/Components/card.module.scss';
 
-const Card = ({ word }) => {
+const Card = ({ word, learned }) => {
   const [isShow, isShowChange] = useState(false);
+  const ref = useRef();
 
   const handleClick = () => {
     isShowChange(!isShow);
+    learned();
   };
 
   useEffect(() => {
     isShowChange(false);
+  }, [word]);
+  useEffect(() => {
+    ref.current.focus();
   }, [word]);
 
   return (
@@ -22,7 +27,7 @@ const Card = ({ word }) => {
         <span className={styles.transcription}> {word?.transcription}</span>
       </div>
       {!isShow ? (
-        <ButtonCommon text='Проверить' onClick={handleClick} />
+        <ButtonCommon text='Проверить' onClick={handleClick} ref={ref} />
       ) : (
         <span className={styles.russian}>{word?.russian}</span>
       )}

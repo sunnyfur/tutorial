@@ -17,6 +17,7 @@ const CardCarousel = ({ wordsList = [], index = 0 }) => {
   const [indexCard, setIndexCard] = useState(index);
   const [animate, setAnimate] = useState(false);
   const carousel = useRef('right');
+  const [learned, setLearned] = useState([]);
 
   let indexNew;
   const switchCards = (side) => {
@@ -40,7 +41,11 @@ const CardCarousel = ({ wordsList = [], index = 0 }) => {
     };
     switchCard();
   };
-
+  const incrementLearned = () => {
+    const newLearned = [...learned];
+    if (newLearned.indexOf(indexCard) === -1) newLearned.push(indexCard);
+    setLearned(newLearned);
+  };
   if (wordsList.length > 0) {
     return (
       <>
@@ -62,7 +67,7 @@ const CardCarousel = ({ wordsList = [], index = 0 }) => {
               delay={300}
               key={animate}
             >
-              <Card word={wordsList[indexCard]} />
+              <Card word={wordsList[indexCard]} learned={incrementLearned} />
             </CSSTransition>
           </SwitchTransition>
           <button
@@ -75,6 +80,9 @@ const CardCarousel = ({ wordsList = [], index = 0 }) => {
         </div>
         <p>
           Карточка {indexCard + 1} из {wordsList.length}
+        </p>
+        <p>
+          Выученных слов {learned.length} из {wordsList.length}
         </p>
       </>
     );
