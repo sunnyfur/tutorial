@@ -14,10 +14,8 @@ const Card = ({ word, learned }) => {
   };
 
   useEffect(() => {
-    isShowChange(false);
-  }, [word]);
-  useEffect(() => {
     ref.current.focus();
+    isShowChange(false);
   }, [word]);
 
   return (

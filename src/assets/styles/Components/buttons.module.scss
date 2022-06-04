@@ -14,4 +14,8 @@
     color: $color-tb-text;
     transition: color 300ms ease-in;
   }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px $color-selection;
+  }
 }
