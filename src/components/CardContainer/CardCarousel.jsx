@@ -43,7 +43,7 @@ const CardCarousel = ({ wordsList = [], index = 0 }) => {
   };
   const incrementLearned = () => {
     const newLearned = [...learned];
-    if (!newLearned.indexOf(indexCard) === -1) newLearned.push(indexCard);
+    if (!newLearned.includes(indexCard)) newLearned.push(indexCard);
     setLearned(newLearned);
   };
   if (wordsList.length > 0) {
