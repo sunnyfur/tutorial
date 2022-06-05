@@ -37,7 +37,10 @@ const WordsApi = ({ children }) => {
     wordsRes();
   }, []);
 
-  //   const wordEdit = (word) => {};
+  const wordEdit = (word) => {
+    // TODO fetch change word
+    console.log(word);
+  };
   const wordDelete = (word) => {
     const newWordsList = [...wordsList].filter((wordF) => wordF.id !== word.id);
     setWordsList(newWordsList);
@@ -47,7 +50,7 @@ const WordsApi = ({ children }) => {
   const valueContext = {
     // функции добавления, удаления, редактирования, поиска
     wordsList,
-    // wordEdit,
+    wordEdit,
     wordDelete,
   };
 

@@ -1,5 +1,5 @@
 import * as classnames from 'classnames';
-import { useContext } from 'react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCheck,
@@ -7,7 +7,6 @@ import {
   faTrash,
   faXmark,
 } from '@fortawesome/free-solid-svg-icons';
-import { WordsContext } from '../WordsApi/WordsApi';
 
 import styles from '../../assets/styles/Components/buttonsCDUD.module.scss';
 
@@ -16,47 +15,56 @@ const edit = <FontAwesomeIcon icon={faPencil} />;
 const del = <FontAwesomeIcon icon={faTrash} />;
 const cancel = <FontAwesomeIcon icon={faXmark} />;
 
-const ButtonsCRUD = ({ word, isSave, onEdit, onAbort }) => {
-  const data = useContext(WordsContext);
-  return (
-    <div className={styles.wrapper}>
-      {isSave ? (
-        <>
-          <div
-            onClick={onEdit}
-            aria-hidden='true'
-            className={classnames(styles.butt, styles.buttSave)}
-          >
-            {save}
-          </div>
-          <div
-            onClick={onAbort}
-            aria-hidden='true'
-            className={classnames(styles.butt, styles.buttEdit)}
-          >
-            {cancel}
-          </div>
-        </>
-      ) : (
-        <>
-          <div
-            onClick={onEdit}
-            aria-hidden='true'
-            className={classnames(styles.butt, styles.buttEdit)}
-          >
-            {edit}
-          </div>
-          <div
-            onClick={() => data.wordDelete(word)}
-            aria-hidden='true'
-            className={classnames(styles.butt, styles.buttDelete)}
-          >
-            {del}
-          </div>
-        </>
-      )}
-    </div>
-  );
-};
+const ButtonsCRUD = ({
+  isSave,
+  enableSave,
+  onEdit,
+  onApply,
+  onAbort,
+  onDelete,
+}) => (
+  <div className={styles.wrapper}>
+    {isSave ? (
+      <>
+        <button
+          type='button'
+          disabled={enableSave}
+          onClick={onApply}
+          aria-hidden='true'
+          className={classnames(styles.butt, styles.buttSave)}
+        >
+          {save}
+        </button>
+        <button
+          type='button'
+          onClick={onAbort}
+          aria-hidden='true'
+          className={classnames(styles.butt, styles.buttEdit)}
+        >
+          {cancel}
+        </button>
+      </>
+    ) : (
+      <>
+        <button
+          type='button'
+          onClick={onEdit}
+          aria-hidden='true'
+          className={classnames(styles.butt, styles.buttEdit)}
+        >
+          {edit}
+        </button>
+        <button
+          type='button'
+          onClick={onDelete}
+          aria-hidden='true'
+          className={classnames(styles.butt, styles.buttDelete)}
+        >
+          {del}
+        </button>
+      </>
+    )}
+  </div>
+);
 
 export default ButtonsCRUD;
