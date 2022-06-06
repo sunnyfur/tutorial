@@ -1,4 +1,4 @@
-import * from 'classnames';
+import * as classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import styles from '../../assets/styles/Components/input.module.scss';
 
@@ -17,21 +17,25 @@ const TableData = ({
   isEdit,
   onChange,
   data,
+  required,
   id,
-  notValid,
+  errorMsg,
 }) => (
   // const changeHandle = (event) => {
   //   onChange(event);
   // };
   <td className={styles.td} data-label={textHeader}>
     {isEdit ? (
-      <input
-        className={classnames(styles.input,{[styles.notValid]: notValid})}
-        data-name={data}
-        defaultValue={text}
-        onChange={onChange}
-        
-      />
+      <div className={styles.container}>
+        <input
+          className={classnames(styles.input, { [styles.notValid]: errorMsg })}
+          data-name={data}
+          data-required={required}
+          defaultValue={text}
+          onChange={onChange}
+        />
+        {errorMsg ? <p className={styles.errorText}>{errorMsg}</p> : <></>}
+      </div>
     ) : (
       textDisplay(id, text)
     )}

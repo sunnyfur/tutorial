@@ -28,7 +28,7 @@ const ButtonsCRUD = ({
       <>
         <button
           type='button'
-          disabled={enableSave}
+          disabled={!enableSave}
           onClick={onApply}
           aria-hidden='true'
           className={classnames(styles.butt, styles.buttSave)}

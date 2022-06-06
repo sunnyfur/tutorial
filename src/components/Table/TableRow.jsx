@@ -17,6 +17,8 @@ const TableRow = ({ word, isHeader = false }) => {
   const [isEdit, isEditChange] = useState(false);
   const [wordEdit, wordEditChange] = useState(word);
   const [enableSave, setEnableSave] = useState(true);
+  const [errorMsg, setErrorMsg] = useState({});
+
   const handleEdit = () => {
     isEditChange(!isEdit);
   };
@@ -32,10 +34,22 @@ const TableRow = ({ word, isHeader = false }) => {
     data.wordDelete(wordEdit);
   };
   useEffect(() => {
-    setEnableSave(!enableSave);
-  }, [wordEdit]);
+    let valid = true;
+
+    if (Object.keys(errorMsg).length !== 0) valid = false;
+
+    setEnableSave(valid);
+  }, [errorMsg]);
 
   const handleChange = (event) => {
+    const errMsg = { ...errorMsg };
+    if (event.target.dataset.required && event.target.value.trim() === '') {
+      errMsg[event.target.dataset.name] = 'Обязательно для заполнения';
+    } else {
+      delete errMsg[event.target.dataset.name];
+    }
+
+    setErrorMsg(errMsg);
     wordEditChange((prevState) => ({
       ...prevState,
       [event.target.dataset.name]: event.target.value,
@@ -58,25 +72,35 @@ const TableRow = ({ word, isHeader = false }) => {
         id={wordEdit.id}
         isEdit={isEdit}
         data='english'
+        required
         onChange={handleChange}
-        notValid
+        errorMsg={errorMsg.english}
       />
 
       <TableData
         textHeader={header.transcription}
         text={wordEdit.transcription}
         isEdit={isEdit}
+        required
         data='transcription'
         onChange={handleChange}
+        errorMsg={errorMsg.transcription}
       />
       <TableData
         textHeader={header.russian}
         text={wordEdit.russian}
         isEdit={isEdit}
+        required
         data='russian'
         onChange={handleChange}
+        errorMsg={errorMsg.russian}
       />
-      <TableData textHeader={header.tags} text={word.tags} isEdit={isEdit} />
+      <TableData
+        textHeader={header.tags}
+        text={word.tags}
+        data='tags'
+        isEdit={isEdit}
+      />
 
       <td className={styles.td}>
         <ButtonsCRUD

@@ -27,6 +27,7 @@ $padd: 8px;
   tr {
     transition: background-color 100ms ease-in-out;
     padding: $padd;
+
     text-align: center;
     &:hover {
       background-color: $color-selection;
