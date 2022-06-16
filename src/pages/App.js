@@ -40,9 +40,9 @@ const App = () => {
         <main className={classnames(styles.container, styles.main)}>
           <WordsApi>
             <Routes>
-              <Route index element={<TablePage />} />
-              <Route path='/game' exact element={<CardContainer />} />
-              <Route path='/cards'>
+              <Route index path='/tutorial' element={<TablePage />} />
+              <Route path='/tutorial/game' exact element={<CardContainer />} />
+              <Route path='/tutorial/cards'>
                 <Route path=':id' element={<CardRoute />} />
               </Route>
               <Route path='*' element={<NotFound />} />

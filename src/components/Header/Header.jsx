@@ -7,14 +7,14 @@ import styles from '../../assets/styles/Components/header.module.scss';
 const Header = ({ className }) => (
   <header className={classnames(className)}>
     <div className={styles.wrapper}>
-      <Link to='/'>
+      <Link to='/tutorial'>
         <img className={styles.logo} src={logo} alt='logo' />
       </Link>
       <nav className={styles.nav}>
-        <Link className={styles.link} to='/'>
+        <Link className={styles.link} to='/tutorial'>
           Home
         </Link>
-        <Link className={styles.link} to='/game'>
+        <Link className={styles.link} to='/tutorial/game'>
           Game
         </Link>
       </nav>
