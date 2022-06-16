@@ -19,12 +19,14 @@ const TableRow = ({ word, isHeader = false }) => {
   const [enableSave, setEnableSave] = useState(true);
   const [errorMsg, setErrorMsg] = useState({});
 
+  const isValidForm = () => Object.keys(errorMsg).length === 0;
   const handleEdit = () => {
     isEditChange(!isEdit);
   };
   const handleApply = () => {
     handleEdit();
-    data.wordEdit(wordEdit);
+    if (enableSave) data.wordEdit(wordEdit);
+    else alert('Данные не сохранены');
   };
   const handleAbort = () => {
     wordEditChange(word);
@@ -34,11 +36,7 @@ const TableRow = ({ word, isHeader = false }) => {
     data.wordDelete(wordEdit);
   };
   useEffect(() => {
-    let valid = true;
-
-    if (Object.keys(errorMsg).length !== 0) valid = false;
-
-    setEnableSave(valid);
+    setEnableSave(isValidForm());
   }, [errorMsg]);
 
   const handleChange = (event) => {
