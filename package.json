@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "homepage": "https://sunnyfur.github.io/tutorial/",
   "private": true,
-  "proxy": "http://itgirlschool.justmakeit.ru",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "6.1.1",
     "@fortawesome/free-solid-svg-icons": "6.1.1",

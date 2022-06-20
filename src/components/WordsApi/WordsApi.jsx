@@ -4,7 +4,9 @@ import Loader from '../Loader/Loader';
 export const WordsContext = createContext();
 
 const getWords = () =>
-  fetch('//itgirlschool.justmakeit.ru/api/words')
+  fetch(
+    'https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words'
+  )
     .then((response) => {
       if (response.ok) {
         // Проверяем что код ответа 200
