@@ -4,7 +4,7 @@ import Loader from '../Loader/Loader';
 export const WordsContext = createContext();
 
 const getWords = () =>
-  fetch('https://itgirlschool.justmakeit.ru/api/words')
+  fetch('//itgirlschool.justmakeit.ru/api/words')
     .then((response) => {
       if (response.ok) {
         // Проверяем что код ответа 200
