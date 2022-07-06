@@ -4,7 +4,7 @@ import styles from '../../assets/styles/Components/input.module.scss';
 
 const textDisplay = (id, text) =>
   id ? (
-    <Link to={`/cards/${id}`}>
+    <Link to={`/tutorial/cards/${id}`}>
       <span>{text}</span>
     </Link>
   ) : (

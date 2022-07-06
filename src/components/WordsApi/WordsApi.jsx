@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext } from 'react';
 import Loader from '../Loader/Loader';
+import ErrorComponent from '../ErrorComponent/ErrorComponent';
 
 export const WordsContext = createContext();
 
@@ -25,13 +26,14 @@ const getWords = () =>
 const WordsApi = ({ children }) => {
   const [wordsList, setWordsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   // const [nextWords, setNextWords] = useState(0);
 
   useEffect(() => {
     // обращение к API
     console.log('Обратились к API');
     const wordsRes = async () => {
-      const words = await getWords();
+      const words = await getWords().catch((err) => setError(err));
       console.log(3, words);
       setWordsList(words);
       setIsLoading(false);
@@ -40,8 +42,11 @@ const WordsApi = ({ children }) => {
   }, []);
 
   const wordEdit = (word) => {
-    // TODO fetch change word
+    fetch(
+      'https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words/add'
+    );
     console.log(word);
+    // TODO fetch change word
   };
   const wordDelete = (word) => {
     const newWordsList = [...wordsList].filter((wordF) => wordF.id !== word.id);
@@ -59,7 +64,9 @@ const WordsApi = ({ children }) => {
   if (isLoading) {
     return <Loader />;
   }
-
+  if (error) {
+    return <ErrorComponent message={error.message} />;
+  }
   return (
     <WordsContext.Provider value={valueContext}>
       {children}
