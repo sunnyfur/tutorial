@@ -1,9 +1,10 @@
+import * as classnames from 'classnames';
 import { forwardRef } from 'react';
 import styles from '../../assets/styles/Components/buttons.module.scss';
 
-const ButtonCommon = forwardRef(({ text, onClick }, ref) => (
+const ButtonCommon = forwardRef(({ text, onClick, className }, ref) => (
   <input
-    className={styles.btnComm}
+    className={classnames(styles.btnComm, className)}
     type='button'
     value={text}
     onClick={onClick}

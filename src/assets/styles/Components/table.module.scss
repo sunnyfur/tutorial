@@ -43,9 +43,9 @@ $padd: 8px;
     }
   }
 
-  // td {
-  //   padding: $padd;
-  // }
+  td {
+    width: 20%;
+  }
 
   @media screen and (max-width: $tablet) {
     border: 0;
@@ -53,24 +53,30 @@ $padd: 8px;
     thead {
       display: none;
     }
+    input,
+    p {
+      width: 100%;
+    }
     tr {
       margin-bottom: 10px;
       display: block;
       border: 1px solid $color-stroke2;
     }
-    .td {
+    td {
       display: block;
       text-align: right;
       font-size: 13px;
-      border-bottom: 1px dotted $color-stroke2;
+      min-height: 50px;
+      width: 100%;
+      // border-bottom: 1px dotted $color-stroke2;
     }
     // td.left_text {
     //   text-align: right;
     // }
-    .td.justify_text {
+    td.justify_text {
       text-align: right;
     }
-    .td:first-child {
+    td:first-child {
       text-align: right;
     }
     // td.right_text {
@@ -79,7 +85,7 @@ $padd: 8px;
     .td:last-child {
       border-bottom: 0;
     }
-    .td:before {
+    td:before {
       content: attr(data-label);
       float: left;
     }

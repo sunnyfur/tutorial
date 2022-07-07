@@ -5,10 +5,12 @@
   background-color: $color-btn-main;
   border: $color-stroke solid 1px;
   border-radius: $border-radius-lg;
+
   padding: 10px 15px;
   color: $color-stroke2;
   font-weight: bold;
   transition: color 300ms ease-in;
+
   &:hover {
     background: $color-btn-third;
     color: $color-tb-text;
@@ -18,4 +20,9 @@
     outline: none;
     box-shadow: 0 0 0 3px $color-selection;
   }
+}
+.btnComm_add {
+  margin-left: 3px;
+  margin-right: 3px;
+  width: 110px;
 }

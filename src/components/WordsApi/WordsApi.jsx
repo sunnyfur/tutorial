@@ -29,34 +29,45 @@ const WordsApi = ({ children }) => {
   const [error, setError] = useState(null);
   // const [nextWords, setNextWords] = useState(0);
 
+  const wordsRes = async () => {
+    const words = await getWords().catch((err) => setError(err));
+    console.log(3, words);
+    setWordsList(words);
+    setIsLoading(false);
+  };
+
   useEffect(() => {
     // обращение к API
     console.log('Обратились к API');
-    const wordsRes = async () => {
-      const words = await getWords().catch((err) => setError(err));
-      console.log(3, words);
-      setWordsList(words);
-      setIsLoading(false);
-    };
+
     wordsRes();
   }, []);
 
   const wordEdit = (word) => {
     fetch(
-      `https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words/${word.id}/update`,{
+      `https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words/${word.id}/update`,
+      {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json;charset=utf-8'
+          'Content-Type': 'application/json;charset=utf-8',
         },
-        body: JSON.stringify(word)
+        body: JSON.stringify(word),
       }
-    );
-    console.log(word);
-    // TODO fetch change word
+    ).catch((err) => setError(err));
   };
   const wordDelete = (word) => {
-    const newWordsList = [...wordsList].filter((wordF) => wordF.id !== word.id);
-    setWordsList(newWordsList);
+    fetch(
+      `https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words/${word.id}/delete`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+      }
+    ).catch((err) => setError(err));
+    wordsRes();
+    // const newWordsList = [...wordsList].filter((wordF) => wordF.id !== word.id);
+    // setWordsList(newWordsList);
     // TODO запрос на удаление из API
   };
 
