@@ -97,6 +97,7 @@ const TableRow = ({ word, isHeader = false }) => {
         textHeader={header.tags}
         text={word.tags}
         data='tags'
+        onChange={handleChange}
         isEdit={isEdit}
       />
 

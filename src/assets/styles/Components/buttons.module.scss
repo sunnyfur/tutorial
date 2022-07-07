@@ -12,8 +12,8 @@
   transition: color 300ms ease-in;
 
   &:hover {
-    background: $color-btn-third;
-    color: $color-tb-text;
+    background: $color-btn-main-hover;
+    // color: $color-tb-text;
     transition: color 300ms ease-in;
   }
   &:focus {

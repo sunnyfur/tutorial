@@ -66,14 +66,25 @@ const WordsApi = ({ children }) => {
       }
     ).catch((err) => setError(err));
     wordsRes();
-    // const newWordsList = [...wordsList].filter((wordF) => wordF.id !== word.id);
-    // setWordsList(newWordsList);
-    // TODO запрос на удаление из API
+  };
+  const wordAdd = (word) => {
+    fetch(
+      `https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words/add`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify(word),
+      }
+    ).catch((err) => setError(err));
+    wordsRes();
   };
 
   const valueContext = {
     // функции добавления, удаления, редактирования, поиска
     wordsList,
+    wordAdd,
     wordEdit,
     wordDelete,
   };
