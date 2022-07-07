@@ -43,7 +43,13 @@ const WordsApi = ({ children }) => {
 
   const wordEdit = (word) => {
     fetch(
-      'https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words/add'
+      `https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words/${word.id}/update`,{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(word)
+      }
     );
     console.log(word);
     // TODO fetch change word
