@@ -7,8 +7,6 @@ import stylesButtW from '../../assets/styles/Components/buttonsCDUD.module.scss'
 import stylesButt from '../../assets/styles/Components/buttons.module.scss';
 import { WordsContext } from '../WordsApi/WordsApi';
 
-// const add = <FontAwesomeIcon icon={faXmark} />;
-// import { Link } from 'react-router-dom';
 const isHeader = true;
 const AddWord = () => {
   const data = useContext(WordsContext);
@@ -18,8 +16,10 @@ const AddWord = () => {
 
   const isValidForm = () => Object.keys(errorMsg).length === 0;
   const handleAdd = () => {
-    if (enableSave) data.wordAdd(word);
-    else alert('Данные не сохранены');
+    if (enableSave) {
+      data.wordAdd(word);
+      wordChange({});
+    } else alert('Данные не сохранены');
   };
   useEffect(() => {
     setEnableSave(isValidForm());
