@@ -12,7 +12,7 @@ import styles from '../assets/styles/Components/page.module.scss';
 import NotFound from './NotFound';
 import CardRoute from '../components/Card/CardRoute';
 import TablePage from './TablePage';
-import WordsApi from '../components/WordsApi/WordsApi';
+import WordsApi from '../context/WordsApi/WordsApi';
 
 const App = () => {
   const [shadowHeader, setShadowHeader] = useState(false);

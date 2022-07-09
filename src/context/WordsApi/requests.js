@@ -1,7 +1,6 @@
 const getWords = () =>
-  fetch(
-    'https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words'
-  )
+  fetch('/itgirlschool/api/words')
+    // 'https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words'
     .then((response) => {
       if (response.ok) {
         // Проверяем что код ответа 200
@@ -13,7 +12,8 @@ const getWords = () =>
 
 const addWord = (word) =>
   fetch(
-    `https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words/add`,
+    `/itgirlschool/api/words/add`,
+    // `https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words/add`,
     {
       method: 'POST',
       headers: {
@@ -24,7 +24,8 @@ const addWord = (word) =>
   );
 const deleteWord = (word) =>
   fetch(
-    `https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words/${word.id}/delete`,
+    `/itgirlschool/api/words/${word.id}/delete`,
+    // `https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words/${word.id}/delete`,
     {
       method: 'POST',
       headers: {
@@ -34,7 +35,8 @@ const deleteWord = (word) =>
   );
 const updateWord = (word) =>
   fetch(
-    `https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words/${word.id}/update`,
+    `/itgirlschool/api/words/${word.id}/update`,
+    // `https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words/${word.id}/update`,
     {
       method: 'POST',
       headers: {

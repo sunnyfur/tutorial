@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import styles from '../../assets/styles/Components/table.module.scss';
 import ButtonsCRUD from '../ButtonCRUD/ButtonsCrud';
 import TableData from './TableData';
-import { WordsContext } from '../WordsApi/WordsApi';
+import { WordsContext } from '../../context/WordsApi/WordsApi';
 
 const header = {
   english: 'English',

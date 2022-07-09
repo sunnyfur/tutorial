@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext } from 'react';
-import Loader from '../Loader/Loader';
-import ErrorComponent from '../ErrorComponent/ErrorComponent';
+import Loader from '../../components/Loader/Loader';
+import ErrorComponent from '../../components/ErrorComponent/ErrorComponent';
 import { getWords, addWord, deleteWord, updateWord } from './requests';
 
 export const WordsContext = createContext();
@@ -23,6 +23,7 @@ const WordsApi = ({ children }) => {
 
   const wordEdit = (word) => {
     updateWord(word).catch((err) => setError(err));
+    wordsRes();
   };
 
   const wordDelete = async (word) => {
@@ -33,7 +34,11 @@ const WordsApi = ({ children }) => {
 
   const wordAdd = async (word) => {
     setIsLoading(true);
-    await addWord(word).catch((err) => setError(err));
+    try {
+      await addWord(word);
+    } catch (err) {
+      setError(err);
+    }
     wordsRes();
   };
 

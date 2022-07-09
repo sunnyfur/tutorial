@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { WordsContext } from '../components/WordsApi/WordsApi';
+import { WordsContext } from '../context/WordsApi/WordsApi';
 
 import Table from '../components/Table/Table';
 import AddWord from '../components/Table/AddWord';
