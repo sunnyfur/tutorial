@@ -20,3 +20,4 @@ module.exports = function (app) {
     })
   );
 };
+// https://cors-everywhere.herokuapp.com

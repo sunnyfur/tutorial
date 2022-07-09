@@ -31,7 +31,7 @@ const AddWord = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(Object.keys(word).length);
+
     if (Object.keys(word).length === 0) {
       wordChange(emptyWord);
     } else if (enableSave) {

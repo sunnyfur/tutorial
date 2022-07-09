@@ -21,24 +21,20 @@ const WordsApi = ({ children }) => {
     wordsRes();
   }, []);
 
-  const wordEdit = (word) => {
-    updateWord(word).catch((err) => setError(err));
+  const wordEdit = async (word) => {
+    await updateWord(word).catch((err) => setError(err));
     wordsRes();
   };
 
   const wordDelete = async (word) => {
-    setIsLoading(true);
     await deleteWord(word).catch((err) => setError(err));
+    setIsLoading(true);
     wordsRes();
   };
 
   const wordAdd = async (word) => {
+    await addWord(word).catch((err) => setError(err));
     setIsLoading(true);
-    try {
-      await addWord(word);
-    } catch (err) {
-      setError(err);
-    }
     wordsRes();
   };
 
@@ -54,7 +50,9 @@ const WordsApi = ({ children }) => {
     return <Loader />;
   }
   if (error) {
-    return <ErrorComponent message={error.message} />;
+    return (
+      <ErrorComponent message={error.message} onClick={() => setError(null)} />
+    );
   }
   return (
     <WordsContext.Provider value={valueContext}>

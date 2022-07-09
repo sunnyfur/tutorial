@@ -36,7 +36,7 @@ const checkValidation = (word) => {
 
     return result;
   }, {});
-  console.log(newErrors);
+
   return newErrors;
 };
 export default checkValidation;
