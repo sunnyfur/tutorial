@@ -9,11 +9,18 @@ import { WordsContext } from '../../context/WordsApi/WordsApi';
 
 import checkValidation from './checkValidation';
 
+const emptyWord = {
+  english: '',
+  transcription: '',
+  russian: '',
+  tags: '',
+};
+
 const isHeader = true;
 const AddWord = () => {
   const data = useContext(WordsContext);
   const [word, wordChange] = useState({});
-  const [enableSave, setEnableSave] = useState(false);
+  const [enableSave, setEnableSave] = useState(true);
   const [errorMsg, setErrorMsg] = useState({});
 
   const isValidForm = () =>
@@ -22,10 +29,12 @@ const AddWord = () => {
       0
     ) === 0;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (enableSave) {
+    console.log(Object.keys(word).length);
+    if (Object.keys(word).length === 0) {
+      wordChange(emptyWord);
+    } else if (enableSave) {
       data.wordAdd(word);
       wordChange({});
     } else alert('Данные не сохранены');
@@ -34,30 +43,16 @@ const AddWord = () => {
     setEnableSave(isValidForm());
   }, [errorMsg]);
 
-  const handleChange = async (event) => {
-    // const errMsg = { ...errorMsg };
-    // if (event.target.dataset.required && event.target.value.trim() === '') {
-    //   errMsg[event.target.dataset.name] = 'Обязательно для заполнения';
-    // }
-    // // else {
-    // //   delete errMsg[event.target.dataset.name];
-    // // }
+  useEffect(() => {
+    setErrorMsg(checkValidation(word));
+  }, [word]);
 
-    // setErrorMsg(errMsg);
-    // event.stopPropagation();
-
-    await wordChange((prevState) => ({
+  const handleChange = (event) => {
+    wordChange((prevState) => ({
       ...prevState,
       [event.target.dataset.name]: event.target.value,
     }));
-    console.log(word);
-    setErrorMsg(checkValidation(word));
   };
-
-  // const handleChangeForm = () => {
-  //   console.log(word);
-  //   setErrorMsg(checkValidation(word));
-  // };
 
   return (
     <form onSubmit={handleSubmit}>
