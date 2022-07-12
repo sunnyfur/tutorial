@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { WordsContext } from '../WordsApi/WordsApi';
+import { WordsContext } from '../../context/WordsApi/WordsApi';
 
 import CardCarousel from './CardCarousel';
 // import ButtonCommon from '../ButtonCommon/ButtonCommon';

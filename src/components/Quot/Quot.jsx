@@ -8,7 +8,8 @@ const Quot = () => {
 
   useEffect(() => {
     const resp = async () => {
-      await fetch('https://forismatic-proxy.herokuapp.com/')
+      await fetch('formastic')
+        // await fetch('https://forismatic-proxy.herokuapp.com/')
         .then((response) => {
           console.log('quot', response);
           if (response.ok) {

@@ -1,14 +1,14 @@
-import * as classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import styles from '../../assets/styles/Components/input.module.scss';
+import Input from '../Input/Input';
 
 const textDisplay = (id, text) =>
   id ? (
-    <Link to={`/cards/${id}`}>
-      <span>{text}</span>
+    <Link to={`/tutorial/cards/${id}`}>
+      <p>{text}</p>
     </Link>
   ) : (
-    <span>{text}</span>
+    <p>{text}</p>
   );
 
 const TableData = ({
@@ -26,16 +26,13 @@ const TableData = ({
   // };
   <td className={styles.td} data-label={textHeader}>
     {isEdit ? (
-      <div className={styles.container}>
-        <input
-          className={classnames(styles.input, { [styles.notValid]: errorMsg })}
-          data-name={data}
-          data-required={required}
-          defaultValue={text}
-          onChange={onChange}
-        />
-        {errorMsg ? <p className={styles.errorText}>{errorMsg}</p> : <></>}
-      </div>
+      <Input
+        data={data}
+        required={required}
+        text={text}
+        onChange={onChange}
+        errorMsg={errorMsg}
+      />
     ) : (
       textDisplay(id, text)
     )}
