@@ -1,25 +1,26 @@
-import { observable, autorun } from 'mobx';
+import { makeAutoObservable } from 'mobx';
+import {
+  getWords as getwordsFetch,
+  addWord,
+  deleteWord,
+  updateWord,
+} from './requests';
+class WordStore {
+  words = [];
+  isLoading = true;
 
-const todos = observable([
-  { title: 'Spoil tea', completed: true },
-  { title: 'Make coffee', completed: false },
-]);
-
-autorun(() => {
-  console.log(
-    'Remaining:',
-    todos
-      .filter((todo) => !todo.completed)
-      .map((todo) => todo.title)
-      .join(', ')
-  );
-});
-// Prints: 'Remaining: Make coffee'
-
-todos[0].completed = false;
-// Prints: 'Remaining: Spoil tea, Make coffee'
-
-todos[2] = { title: 'Take a nap', completed: false };
-// Prints: 'Remaining: Spoil tea, Make coffee, Take a nap'
-
-todos.shift();
+  constructor() {
+    makeAutoObservable(this);
+  }
+  getWords() {
+    getwordsFetch()
+      .then((result) => {
+        this.words = [...result];
+      })
+      .catch((err) => console.log(err));
+  }
+  addWord(word) {}
+  deleteWord() {}
+  editWord() {}
+}
+export default new WordStore();
