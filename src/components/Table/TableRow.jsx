@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { observer, inject } from 'mobx-react';
 
 import styles from '../../assets/styles/Components/table.module.scss';
 import ButtonsCRUD from '../ButtonCRUD/ButtonsCrud';
 import TableData from './TableData';
-import { WordsContext } from '../../context/WordsApi/WordsApi';
 
 const header = {
   english: 'English',
@@ -12,8 +12,7 @@ const header = {
   tags: 'Tags',
 };
 
-const TableRow = ({ word, isHeader = false }) => {
-  const data = useContext(WordsContext);
+const TableRow = ({ wordStore, word, isHeader = false }) => {
   const [isEdit, isEditChange] = useState(false);
   const [wordEdit, wordEditChange] = useState(word);
   const [enableSave, setEnableSave] = useState(true);
@@ -25,7 +24,7 @@ const TableRow = ({ word, isHeader = false }) => {
   };
   const handleApply = () => {
     handleEdit();
-    if (enableSave) data.wordEdit(wordEdit);
+    if (enableSave) wordStore.wordEdit(wordEdit);
     else alert('Данные не сохранены');
   };
   const handleAbort = () => {
@@ -33,7 +32,7 @@ const TableRow = ({ word, isHeader = false }) => {
     handleEdit();
   };
   const handleDelete = () => {
-    data.wordDelete(wordEdit);
+    wordStore.wordDelete(wordEdit);
   };
   useEffect(() => {
     setEnableSave(isValidForm());
@@ -115,4 +114,4 @@ const TableRow = ({ word, isHeader = false }) => {
   );
 };
 
-export default TableRow;
+export default inject(['wordStore'])(observer(TableRow));

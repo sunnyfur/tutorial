@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { observer, inject } from 'mobx-react';
 import Input from '../Input/Input';
 import TableRow from './TableRow';
 import ButtonCommon from '../ButtonCommon/ButtonCommon';
 import styles from '../../assets/styles/Components/table.module.scss';
 import stylesButtW from '../../assets/styles/Components/buttonsCDUD.module.scss';
 import stylesButt from '../../assets/styles/Components/buttons.module.scss';
-import { WordsContext } from '../../context/WordsApi/WordsApi';
 
 import checkValidation from './checkValidation';
 
@@ -17,8 +17,7 @@ const emptyWord = {
 };
 
 const isHeader = true;
-const AddWord = () => {
-  const data = useContext(WordsContext);
+const AddWord = ({ wordStore }) => {
   const [word, wordChange] = useState({});
   const [enableSave, setEnableSave] = useState(true);
   const [errorMsg, setErrorMsg] = useState({});
@@ -35,7 +34,7 @@ const AddWord = () => {
     if (Object.keys(word).length === 0) {
       wordChange(emptyWord);
     } else if (enableSave) {
-      data.wordAdd(word);
+      wordStore.wordAdd(word);
       wordChange({});
     } else alert('Данные не сохранены');
   };
@@ -106,4 +105,4 @@ const AddWord = () => {
   );
 };
 
-export default AddWord;
+export default inject(['wordStore'])(observer(AddWord));

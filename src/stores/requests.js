@@ -46,4 +46,16 @@ const updateWord = (word) =>
     if (!response.ok)
       throw new Error('Something went wrong, word did not add ...');
   });
-export { getWords, addWord, deleteWord, updateWord };
+const getWord = (word) =>
+  fetch(`/itgirlschool/api/words/${word.id}`)
+    .then((response) => {
+      if (response.ok) {
+        // Проверяем что код ответа 200
+        return response.json();
+      }
+      if (response.status === 404)
+        throw new Error('Error in the request address');
+      throw new Error('Something went wrong ...');
+    })
+    .then((response) => response);
+export { getWords, addWord, deleteWord, updateWord, getWord };

@@ -1,11 +1,10 @@
 import * as classnames from 'classnames';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { observer, inject } from 'mobx-react';
 
 import Header from '../components/Header/Header';
 import CardContainer from '../components/CardContainer/CardContainer';
-
-// import Counter from './components/CardContainer/Counter';
 import Footer from '../components/Footer/Footer';
 
 import styles from '../assets/styles/Components/page.module.scss';
@@ -14,7 +13,7 @@ import CardRoute from '../components/Card/CardRoute';
 import TablePage from './TablePage';
 import WordsApi from '../context/WordsApi/WordsApi';
 
-const App = () => {
+const App = ({ wordStore }) => {
   const [shadowHeader, setShadowHeader] = useState(false);
   const handleScroll = () => {
     if (document.documentElement.scrollTop > 5) {
@@ -25,6 +24,7 @@ const App = () => {
   };
   useEffect(() => {
     window.onscroll = () => handleScroll();
+    wordStore.loadData();
   }, []);
 
   return (
@@ -39,6 +39,7 @@ const App = () => {
 
         <main className={classnames(styles.container, styles.main)}>
           <WordsApi>
+            {' '}
             <Routes>
               <Route index path='/tutorial' element={<TablePage />} />
               <Route path='/tutorial/game' exact element={<CardContainer />} />
@@ -46,7 +47,7 @@ const App = () => {
                 <Route path=':id' element={<CardRoute />} />
               </Route>
               <Route path='*' element={<NotFound />} />
-            </Routes>
+            </Routes>{' '}
           </WordsApi>
         </main>
 
@@ -56,4 +57,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default inject(['wordStore'])(observer(App));

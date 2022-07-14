@@ -1,16 +1,22 @@
 // import React from 'react';
+import { Provider } from 'mobx-react';
 import ReactDOM from 'react-dom/client';
 
 import './index.css';
 import App from './pages/App';
 import reportWebVitals from './reportWebVitals';
+import WordStore from './stores/WordsStore';
+
+const store = {
+  wordStore: new WordStore(),
+};
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>  //первый рендер делается два раза. из-за этого происходит двойной Fetch
-
-  <App />
-
+  <Provider {...store}>
+    <App />
+  </Provider>
   // </React.StrictMode>
 );
 
