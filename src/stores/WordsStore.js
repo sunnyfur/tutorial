@@ -51,6 +51,11 @@ export default class WordStore {
   };
   wordGet = async (wordId) => {
     // this.isLoading = true;
-    await getWord(wordId).catch((err) => (this.error = err));
+    const result = await getWord(wordId).catch((err) => (this.error = err));
+    runInAction(() => {
+      this.word = result;
+      this.isLoading = false;
+      this.isLoaded = false;
+    });
   };
 }

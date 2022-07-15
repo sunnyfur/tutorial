@@ -1,16 +1,16 @@
 import { useParams } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Card from './Card';
 
 const CardRoute = ({ wordStore }) => {
   const params = useParams();
-  const [findWord, setFindWord] = useState('');
+  // const [findWord, setFindWord] = useState('');
 
   useEffect(() => {
-    setFindWord(wordStore.wordGet(params.id));
+    wordStore.wordGet(params.id);
   }, []);
 
-  return <Card word={findWord} />;
+  return <Card word={wordStore.word} />;
 };
 export default inject(['wordStore'])(observer(CardRoute));
