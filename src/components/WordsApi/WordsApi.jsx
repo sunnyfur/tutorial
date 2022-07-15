@@ -1,6 +1,6 @@
 import { observer, inject } from 'mobx-react';
-import Loader from '../../components/Loader/Loader';
-import ErrorComponent from '../../components/ErrorComponent/ErrorComponent';
+import Loader from '../Loader/Loader';
+import ErrorComponent from '../ErrorComponent/ErrorComponent';
 
 const WordsApi = ({ children, wordStore }) => {
   if (wordStore.isLoading) {

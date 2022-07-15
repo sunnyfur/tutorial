@@ -1,11 +1,12 @@
 import { makeAutoObservable, runInAction } from 'mobx';
-import { getWords, addWord, deleteWord, updateWord } from './requests';
+import { getWords, addWord, deleteWord, updateWord, getWord } from './requests';
 
 export default class WordStore {
   words = [];
   isLoading = false;
   isLoaded = false;
   error = null;
+  word = {};
   constructor() {
     makeAutoObservable(this);
   }
@@ -48,19 +49,8 @@ export default class WordStore {
       this.loadData();
     });
   };
-  wordGet() {
-    fetch(`http://itgirlschool.justmakeit.ru/api/words/${idWord}`)
-      .then((response) => {
-        if (response.ok) {
-          // Проверяем что код ответа 200
-          return response.json();
-        }
-        throw new Error('Something went wrong ...');
-      })
-      .then((response) => {
-        console.log('word', response);
-        return response;
-      })
-      .catch((err) => console.log(err));
-  }
+  wordGet = async (wordId) => {
+    // this.isLoading = true;
+    await getWord(wordId).catch((err) => (this.error = err));
+  };
 }

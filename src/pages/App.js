@@ -11,7 +11,7 @@ import styles from '../assets/styles/Components/page.module.scss';
 import NotFound from './NotFound';
 import CardRoute from '../components/Card/CardRoute';
 import TablePage from './TablePage';
-import WordsApi from '../context/WordsApi/WordsApi';
+import WordsApi from '../components/WordsApi/WordsApi';
 
 const App = ({ wordStore }) => {
   const [shadowHeader, setShadowHeader] = useState(false);
@@ -39,7 +39,6 @@ const App = ({ wordStore }) => {
 
         <main className={classnames(styles.container, styles.main)}>
           <WordsApi>
-            {' '}
             <Routes>
               <Route index path='/tutorial' element={<TablePage />} />
               <Route path='/tutorial/game' exact element={<CardContainer />} />
@@ -47,7 +46,7 @@ const App = ({ wordStore }) => {
                 <Route path=':id' element={<CardRoute />} />
               </Route>
               <Route path='*' element={<NotFound />} />
-            </Routes>{' '}
+            </Routes>
           </WordsApi>
         </main>
 

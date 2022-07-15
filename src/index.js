@@ -14,6 +14,7 @@ const store = {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>  //первый рендер делается два раза. из-за этого происходит двойной Fetch
+  // eslint-disable-next-line react/jsx-props-no-spreading
   <Provider {...store}>
     <App />
   </Provider>

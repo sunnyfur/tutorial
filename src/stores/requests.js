@@ -46,8 +46,8 @@ const updateWord = (word) =>
     if (!response.ok)
       throw new Error('Something went wrong, word did not add ...');
   });
-const getWord = (word) =>
-  fetch(`/itgirlschool/api/words/${word.id}`)
+const getWord = (idWord) =>
+  fetch(`/itgirlschool/api/words/${idWord}`)
     .then((response) => {
       if (response.ok) {
         // Проверяем что код ответа 200
