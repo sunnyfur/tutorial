@@ -12,7 +12,7 @@ module.exports = function (app) {
   );
   app.use(
     createProxyMiddleware('/formastic', {
-      target: 'https://forismatic-proxy.herokuapp.com/',
+      target: 'http://api.forismatic.com/api/1.0/',
       changeOrigin: true,
       pathRewrite: {
         '/formastic': '',
